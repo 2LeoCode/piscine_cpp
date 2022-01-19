@@ -6,7 +6,7 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 04:50:04 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2022/01/18 19:49:52 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/20 00:22:39 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,20 +54,13 @@ static void	updateTimestamp(void) {
 	timestamp = timeStampStream.str();
 }
 
-int	Account::getNbAccounts(void) {
-	return (_nbAccounts);
-}
-int	Account::getTotalAmount(void) {
-	return (_totalAmount);
-}
+int	Account::getNbAccounts(void) { return _nbAccounts; }
 
-int	Account::getNbDeposits(void) {
-	return (_totalNbDeposits);
-}
+int	Account::getTotalAmount(void) { return _totalAmount; }
 
-int	Account::getNbWithdrawals(void) {
-	return (_totalNbWithdrawals);
-}
+int	Account::getNbDeposits(void) { return _totalNbDeposits; }
+
+int	Account::getNbWithdrawals(void) { return _totalNbWithdrawals; }
 
 void	Account::displayAccountsInfos(void) {
 	_displayTimestamp();
@@ -115,7 +108,7 @@ bool	Account::makeWithdrawal(int withdrawal) {
 	if (!checkAmount()) {
 		log() << "refused" << std::endl;
 		_amount += withdrawal;
-		return (false);
+		return false;
 	}
 	++_totalNbWithdrawals;
 	_totalAmount -= withdrawal;
@@ -123,12 +116,10 @@ bool	Account::makeWithdrawal(int withdrawal) {
 		";amount:" << _amount <<
 		";nb_withdrawals:" << ++_nbWithdrawals <<
 	std::endl;
-	return (true);
+	return true;
 }
 
-int		Account::checkAmount(void) const {
-	return (_amount >= 0);
-}
+int		Account::checkAmount(void) const { return _amount >= 0; }
 
 void	Account::displayStatus(void) const {
 	_displayTimestamp();

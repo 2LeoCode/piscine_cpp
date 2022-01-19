@@ -6,7 +6,7 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 01:50:56 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2022/01/19 17:48:54 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/20 00:17:08 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,5 @@ int	main(void) {
 	} catch (const std::exception &e) {
 		std::cerr << e.what() << std::endl;
 	}
-	return (0);
+	return 0;
 }

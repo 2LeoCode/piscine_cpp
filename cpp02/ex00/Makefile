@@ -3,14 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: crochu <crochu@student.42.fr>              +#+  +:+       +#+         #
+#    By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/15 01:17:37 by Leo Suardi        #+#    #+#              #
-#    Updated: 2021/11/02 16:17:08 by crochu           ###   ########.fr        #
+#    Updated: 2022/01/19 23:42:27 by Leo Suardi       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME=canon
+
+INC=$(wildcard *.hpp)
 SRC=$(wildcard *.cpp)
 OBJ=$(SRC:.cpp=.o)
 
@@ -22,7 +24,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $^ -o $@
 
-%.o: %.cpp
+%.o: %.cpp $(INC) Makefile
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:

@@ -6,7 +6,7 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 01:50:56 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2022/01/19 17:52:19 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/20 00:16:44 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,5 @@ int	main(int argc, char **argv) {
 		std::cout << std::endl;
 	} else for (int i = 0; i < 4; ++i)
 		complainAtLevel(karen, i, filterLevel);
-	return (0);
+	return 0;
 }

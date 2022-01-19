@@ -6,7 +6,7 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 17:43:27 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2022/01/19 15:13:05 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/19 23:47:36 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,16 @@
 
 class HumanB {
 	public:
+		HumanB(std::string name);
 
-	HumanB(std::string name);
-	~HumanB();
+		~HumanB();
 
-	void	setWeapon(Weapon &weapon);
-	void	attack(void) const;
+		void	setWeapon(Weapon &weapon);
+		void	attack(void) const;
 
 	private:
-
-	std::string	_name;
-	Weapon		*_weapon;
+		std::string	_name;
+		Weapon		*_weapon;
 };
 
 /*

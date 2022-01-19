@@ -6,7 +6,7 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 17:57:55 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2022/01/19 17:08:25 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/20 00:17:59 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,5 @@ int main(void) {
 		club.setType("some other type of club");
 		jim.attack();
 	}
-	return (0);
+	return 0;
 }

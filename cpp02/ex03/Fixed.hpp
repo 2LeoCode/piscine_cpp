@@ -6,18 +6,13 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 17:48:52 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2021/09/19 01:11:45 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/20 00:38:52 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FIXED_HPP
-# define FIXED_HPP
+#pragma once
 
-# define BYTE_ORDER !!(1 << 1)
-# define BIG_ENDIAN 1
-# define LITTLE_ENDIAN 0
-
-# include <iostream>
+#include <iostream>
 
 class Fixed {
 	public:
@@ -29,12 +24,12 @@ class Fixed {
 	Fixed(const int value);
 	Fixed(const float value);
 
-	Fixed	&operator=(const Fixed src);
+	Fixed	&operator =(const Fixed src);
 
-	Fixed	&operator++(void);
-	Fixed	operator++(int);
-	Fixed	&operator--(void);
-	Fixed	operator--(int);
+	Fixed	&operator ++(void);
+	Fixed	operator ++(int);
+	Fixed	&operator --(void);
+	Fixed	operator --(int);
 
 	int		getRawBits(void) const;
 	void	setRawBits(int rawBits);
@@ -54,18 +49,16 @@ class Fixed {
 	int					_rawBits;
 };
 
-std::ostream	&operator<<(std::ostream &out, const Fixed &nb);
+std::ostream	&operator <<(std::ostream &out, const Fixed &nb);
 
-Fixed	operator+(Fixed a, Fixed b);
-Fixed	operator-(Fixed a, Fixed b);
-Fixed	operator*(Fixed a, Fixed b);
-Fixed	operator/(Fixed a, Fixed b);
+Fixed	operator +(Fixed a, Fixed b);
+Fixed	operator -(Fixed a, Fixed b);
+Fixed	operator *(Fixed a, Fixed b);
+Fixed	operator /(Fixed a, Fixed b);
 
-bool	operator>(Fixed a, Fixed b);
-bool	operator<(Fixed a, Fixed b);
-bool	operator>=(Fixed a, Fixed b);
-bool	operator<=(Fixed a, Fixed b);
-bool	operator==(Fixed a, Fixed b);
-bool	operator!=(Fixed a, Fixed b);
-
-#endif
+bool	operator >(Fixed a, Fixed b);
+bool	operator <(Fixed a, Fixed b);
+bool	operator >=(Fixed a, Fixed b);
+bool	operator <=(Fixed a, Fixed b);
+bool	operator ==(Fixed a, Fixed b);
+bool	operator !=(Fixed a, Fixed b);

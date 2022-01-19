@@ -6,7 +6,7 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/20 15:13:27 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2021/09/20 22:15:27 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/20 00:26:47 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,5 @@ bool	bsp(const Point a, const Point b, const Point c, const Point p) {
 	bool	p_ab(ab.getX() * ap.getY() - ab.getY() * ap.getX() > Fixed(0)),
 			p_ac(ac.getX() * ap.getY() - ac.getY() * ap.getX() > Fixed(0)),
 			p_bc(bc.getX() * bp.getY() - bc.getY() * bp.getX() > Fixed(0));
-	return (p_ab != p_ac && p_bc == p_ab);
+	return p_ab != p_ac && p_bc == p_ab;
 }

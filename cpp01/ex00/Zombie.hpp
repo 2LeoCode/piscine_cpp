@@ -6,7 +6,7 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 14:29:56 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2022/01/19 13:41:43 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/20 00:19:57 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,13 @@
 
 class Zombie {
 	public:
+		Zombie();
+		Zombie(const std::string name);
 
-	Zombie();
-	~Zombie();
+		~Zombie();
 
-	Zombie(const std::string name);
-	void	announce(void);
+		void	announce(void);
 
 	private:
-
-	const std::string	_name;
+		const std::string	_name;
 };

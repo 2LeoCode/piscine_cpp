@@ -6,7 +6,7 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 14:35:10 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2022/01/19 13:45:01 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/20 00:18:45 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ Zombie::~Zombie() {
 
 Zombie	Zombie::operator =(const Zombie &src) {
 	_name = src._name;
-	return (*this);
+	return *this;
 }
 
 void	Zombie::announce(void) {

@@ -6,7 +6,7 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 13:19:28 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2022/01/19 13:33:40 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/19 23:46:19 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,17 @@ template <
 		UniquePtr(const UniquePtr &other) : _ptr(other._ptr) { }
 		~UniquePtr() { delete _ptr; }
 
-		UniquePtr	&operator=(const UniquePtr &other) {
+		UniquePtr	&operator =(const UniquePtr &other) {
 			_ptr = other._ptr;
 			return (*this);
 		}
-		UniquePtr	&operator=(T *ptr) {
+		UniquePtr	&operator =(T *ptr) {
 			_ptr = ptr;
 			return (*this);
 		}
 
-		T			&operator*(void) { return *_ptr; }
-		T			*operator->(void) { return _ptr; }
+		T			&operator *(void) { return *_ptr; }
+		T			*operator ->(void) { return _ptr; }
 
 	private:
 		T	*_ptr;

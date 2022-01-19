@@ -6,7 +6,7 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 02:52:55 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2022/01/18 19:00:35 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/20 00:20:42 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static std::string	getInput(const char *msg) {
 
 	std::cout << msg << ": ";
 	std::getline(std::cin, inputLine);
-	return (inputLine);
+	return inputLine;
 }
 
 static std::string	getName(const char *msg) {
@@ -51,7 +51,7 @@ static std::string	getName(const char *msg) {
 		if (it == inputLine.end()) validInput = true;
 		else std::cerr << "INVALID INPUT" << std::endl;
 	}
-	return (inputLine);
+	return inputLine;
 }
 
 static std::string	getPhoneNumber(const char *msg) {
@@ -79,7 +79,7 @@ static std::string	getPhoneNumber(const char *msg) {
 		if (cnt == 10 && it == inputLine.end()) break ;
 		else std::cout << "INVALID INPUT" << std::endl;
 	}
-	return (finalStr);
+	return finalStr;
 }
 
 void	PhoneBook::add(void) {
@@ -98,7 +98,7 @@ std::string	PhoneBook::formatField(unsigned field) {
 	std::ostringstream	stream;
 
 	stream << std::setw(10) << field << std::setw(0);
-	return (stream.str());
+	return stream.str();
 }
 
 std::string	PhoneBook::formatField(std::string &field) {
@@ -107,7 +107,7 @@ std::string	PhoneBook::formatField(std::string &field) {
 	if (field.length() > 10)
 		stream << std::string(field.begin(), field.begin() + 9) << '.';
 	else stream << std::setw(10) << field << std::setw(0);
-	return (stream.str());
+	return stream.str();
 }
 
 std::string	PhoneBook::formatField(const char *field) {
@@ -116,7 +116,7 @@ std::string	PhoneBook::formatField(const char *field) {
 	if (std::strlen(field) > 10)
 		stream << std::string(field, field + 9) << '.';
 	else stream << std::setw(10) << field << std::setw(0);
-	return (stream.str());
+	return stream.str();
 }
 
 void	PhoneBook::search(void) {

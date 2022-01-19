@@ -6,7 +6,7 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 14:41:48 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2022/01/19 17:08:49 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/20 00:19:16 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	main(void) {
 			marco = new Zombie("marco");
 		} catch (const std::exception &e) {
 			std::cerr << e.what() << std::endl;
-			return (-1);
+			return -1;
 		}
 		joe->announce();
 		bob->announce();
@@ -89,5 +89,5 @@ int	main(void) {
 	}
 	std::cout << std::endl;
 	randomChump("random");
-	return (0);
+	return 0;
 }

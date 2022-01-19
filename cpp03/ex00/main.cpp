@@ -6,7 +6,7 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/20 23:56:21 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2021/09/21 01:18:44 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/19 23:21:12 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,10 +108,10 @@ int	main(int argc, char **argv) {
 	" You don't even know me!" << std::endl;
 	std::cout << '<' << steve.getName() << "> Because your name is Billy,"
 	" so I can't let you down here! Run !!!" << std::endl;
-	std::cout << "The giant two headed bear jumps on " << steve.getName() <<
-	" and litterally devours all his electrical components!" << std::endl;
 	try {
 		steve.attack("giant two headed bear");
+		std::cout << "The giant two headed bear jumps on " << steve.getName() <<
+		" and litterally devours all his electrical components!" << std::endl;
 		steve.takeDamage(9999);
 		steve.beRepaired(99);
 	} catch (std::string &err) {

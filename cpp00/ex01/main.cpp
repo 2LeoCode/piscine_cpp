@@ -6,7 +6,7 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 03:34:11 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2021/09/16 03:35:52 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/20 00:20:21 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,5 @@ int	main(void) {
 		std::getline(std::cin, inputLine);
 		book.execute(inputLine);
 	}
-	return (0);
+	return 0;
 }

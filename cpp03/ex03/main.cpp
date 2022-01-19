@@ -6,7 +6,7 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 21:42:26 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2021/10/24 01:21:05 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/19 23:40:11 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(void) {
 	jamy.enableDebugInfos();
 	std::cout << '<' << jamy.getName() << ">"
 	" MWAHAHAHAHA! I'M MEAN!" << std::endl;
-	jamy.attack("Every claptrap");
+	jamy.attack("Everyone");
 	scavy.takeDamage(3567587328);
 	fraggy.takeDamage(3567587328);
 	jamy.guardGate();

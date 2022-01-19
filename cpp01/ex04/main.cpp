@@ -6,7 +6,7 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 00:19:15 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2022/01/19 17:08:15 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/20 00:17:24 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static std::string	getFileString(const char *filename) {
 
 	inStream << in.rdbuf();
 	in.close();
-	return (inStream.str());
+	return inStream.str();
 }
 
 int	main(int argc, char **argv) {
@@ -52,5 +52,5 @@ int	main(int argc, char **argv) {
 
 	out << inputStr;
 	out.close();
-	return (0);
+	return 0;
 }
