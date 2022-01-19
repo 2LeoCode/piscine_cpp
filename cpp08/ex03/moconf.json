@@ -1,0 +1,15 @@
+[
+	"MindOpen Configuration File",
+	{
+		"increment_pointer" : ">",
+		"decrement_pointer" : "<",
+		"increment_value" : "+",
+		"decrement_value" : "-",
+		"output_value" : ".",
+		"input_value" : ",",
+		"begin_loop" : "[",
+		"end_loop" : "]",
+		"begin_comment" : "(",
+		"end_comment" : ")"
+	}
+]
