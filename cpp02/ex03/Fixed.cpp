@@ -6,7 +6,7 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 17:55:32 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2022/01/20 00:40:06 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/20 00:46:30 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@
 
 #define ABS(x) (((x) < 0) ? -(x) : (x))
 
-#define PRINT_BITS(var); {\
+#define PRINT_BITS(var) do {\
 	for (unsigned i = sizeof(var) * 8 - 1; i != UINT_MAX; --i) {\
 		if (i && (i + 1) != sizeof(var) * 8 && !((i + 1) % 4))\
 			std::cout << ' ';\
 		std::cout << !!((var) & (1 << i));\
 	}\
 	std::cout << std::endl;\
-}
+} while (0)
 
 const int	Fixed::_nbBits(8);
 
@@ -122,22 +122,14 @@ bool	operator ==(Fixed a, Fixed b) {
 	return a.getRawBits() == b.getRawBits();
 }
 
-bool	operator <(Fixed a, Fixed b) {
-	return !(a >= b);
-}
+bool	operator <(Fixed a, Fixed b) { return !(a >= b); }
 
-bool	operator >=(Fixed a, Fixed b) {
-	return a == b  || a > b;
-}
+bool	operator >=(Fixed a, Fixed b) { return a == b  || a > b; }
 
-bool	operator <=(Fixed a, Fixed b) {
-	return !(a > b);
-}
+bool	operator <=(Fixed a, Fixed b) { return !(a > b); }
 
 
-bool	operator !=(Fixed a, Fixed b) {
-	return !(a == b);
-}
+bool	operator !=(Fixed a, Fixed b) { return !(a == b); }
 
 Fixed	operator +(Fixed a, Fixed b) {
 	Fixed	ret;
