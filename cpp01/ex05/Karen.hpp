@@ -30,9 +30,8 @@ class Karen {
 	void	error(void);
 
 	bool	m_init_trie(void);
-	static std::string			_debugMsg;
-	static std::string			_infoMsg;
-	static std::string			_warningMsg;
-	static std::string			_errorMsg;
-	static Trie< ComplainFun >	*_data;
+
+	static std::string					m_debugMsg, m_infoMsg,
+										m_warningMsg, m_errorMsg;
+	static Trie< Karen::ComplainFun >	m_data;
 };

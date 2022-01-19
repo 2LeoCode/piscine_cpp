@@ -6,7 +6,7 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 01:21:26 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2022/01/19 17:55:54 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/19 17:50:20 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,13 @@ std::string	Karen::_warningMsg("I think I deserve to have some extra bacon for "
 std::string	Karen::_errorMsg("This is unacceptable, I want to speak to the "
 "manager now.");
 
-Trie< Karen::ComplainFun >	*Karen::_data;
+Trie< Karen::ComplainFun >	Karen::_data;
 
 bool	Karen::m_init_trie(void) {
-	Karen::_data = new Trie< Karen::ComplainFun >;
-
-	Karen::_data->insert("DEBUG", &Karen::debug);
-	Karen::_data->insert("INFO", &Karen::info);
-	Karen::_data->insert("WARNING", &Karen::warning);
-	Karen::_data->insert("ERROR", &Karen::error);
+	_data.insert("DEBUG", &Karen::debug);
+	_data.insert("INFO", &Karen::info);
+	_data.insert("WARNING", &Karen::warning);
+	_data.insert("ERROR", &Karen::error);
 	return true;
 }
 
@@ -60,5 +58,5 @@ void	Karen::error(void) {
 }
 
 void	Karen::complain(std::string level) {
-	(this->*_data->search(level.c_str()))();
+	(this->*_data.search(level.c_str()))();
 }
