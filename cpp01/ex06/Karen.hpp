@@ -31,7 +31,7 @@ class Karen {
 
 	bool	m_init_trie(void);
 
-	static std::string					_debugMsg, _infoMsg,
-										_warningMsg, _errorMsg;
-	static Trie< Karen::ComplainFun >	_data;
+	static std::string					m_debugMsg, m_infoMsg,
+										m_warningMsg, m_errorMsg;
+	static Trie< Karen::ComplainFun >	m_data;
 };
