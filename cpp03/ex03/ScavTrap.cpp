@@ -2,38 +2,43 @@
 
 #include <iostream>
 
-#define M(memberName) ScavTrap::memberName
-
-M(ScavTrap)() {
-	announceBegin();
-	_hp = 100;
-	_ep = 50;
-	_dmg = 10;
-	_type = "ScavTrap";
+ScavTrap::ScavTrap() : ClapTrap() {
+	m_hp = 100;
+	m_ep = 50;
+	m_dmg = 10;
+	std::cout << "Created ScavTrap " << m_name << std::endl;
 }
 
-M(~ScavTrap)() {
-	announceEnd();
+ScavTrap::ScavTrap(const ScavTrap &other) : ClapTrap(other) {
+	std::cout << "Created copy ScavTrap " << m_name << std::endl;
 }
 
-M(ScavTrap)(std::string name) : ClapTrap(name) {
-	_hp = 100;
-	_ep = 50;
-	_dmg = 10;
-	_type = "ScavTrap";
-	announceBegin();
+ScavTrap::~ScavTrap() {
+	std::cout << "Destroyed ScavTrap " << m_name << std::endl;
 }
 
-void	M(attack)(std::string target) {
-	std::cout << '<' << _type << ' ' << _name <<
+ScavTrap	&ScavTrap::operator =(const ScavTrap &other) {
+	dynamic_cast< ClapTrap& >(*this) = dynamic_cast< const ClapTrap& >(other);
+	return *this;
+}
+
+ScavTrap::ScavTrap(std::string name) : ClapTrap(name) {
+	m_hp = 100;
+	m_ep = 50;
+	m_dmg = 10;
+	std::cout << "Created ScavTrap " << m_name << std::endl;
+}
+
+void	ScavTrap::attack(std::string target) {
+	std::cout << '<' << m_name <<
 	"> Scaving the ennemies....." << std:: endl << target <<
-	" got scaved for " << _dmg << " damage points." << std::endl;
+	" got scaved for " << m_dmg << " damage points." << std::endl;
 }
 
-void	M(guardGate)(void) {
-	if (_ep < 2) throw (_type + ' ' + _name + " is out of energy.");
-	_ep -= 2;
-	std::cout << _type << ' ' << _name <<
+void	ScavTrap::guardGate(void) {
+	if (m_ep < 2) throw "ScavTrap " + m_name + " is out of energy.";
+	m_ep -= 2;
+	std::cout << "ScavTrap " << m_name <<
 	" has entered in Gate Keeper mode. BE AWARE" << std::endl;
-	if (_debugInfo) debugInfo();
+	if (m_debugInfo) debugInfo();
 }

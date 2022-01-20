@@ -6,7 +6,7 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 17:48:52 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2022/01/20 00:38:52 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/20 18:19:48 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ class Fixed {
 
 	private:
 
-	static const int	_nbBits;
+	static const int	m_nbBits;
 
-	int					_rawBits;
+	int					m_rawBits;
 };
 
 std::ostream	&operator <<(std::ostream &out, const Fixed &nb);

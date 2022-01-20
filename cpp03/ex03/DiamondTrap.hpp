@@ -1,25 +1,31 @@
-#ifndef DIAMONDTRAP_HPP
-# define DIAMONDTRAP_HPP
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   DiamondTrap.hpp                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/20 19:59:56 by Leo Suardi        #+#    #+#             */
+/*   Updated: 2022/01/20 20:54:20 by Leo Suardi       ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-# include "ScavTrap.hpp"
-# include "FragTrap.hpp"
+#pragma once
+
+#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 class DiamondTrap : public ScavTrap, public FragTrap {
 	public:
+		DiamondTrap();
+		DiamondTrap(const DiamondTrap &other);
+		virtual ~DiamondTrap();
 
-	DiamondTrap();
-	virtual ~DiamondTrap();
+		DiamondTrap	&operator =(const DiamondTrap &other);
+		DiamondTrap(std::string name);
 
-	DiamondTrap(std::string name);
-
-	void		whoAmI(void) const;
-	std::string	getName(void) const;
+		void	whoAmI(void) const;
 
 	private:
-
-	void	constructMsg(void);
-
-	std::string	_name;
+		std::string	m_name;
 };
-
-#endif //DIAMONDTRAP_HPP

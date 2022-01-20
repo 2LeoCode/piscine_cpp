@@ -6,7 +6,7 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 17:55:32 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2022/01/20 17:42:37 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/20 18:19:13 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,35 +29,35 @@
 	std::cout << std::endl;\
 } while (0)
 
-const int	Fixed::_nbBits = 8;
+const int	Fixed::m_nbBits = 8;
 
-Fixed::Fixed() : _rawBits(0) { }
+Fixed::Fixed() : m_rawBits(0) { }
 
 Fixed::~Fixed() { }
 
-Fixed::Fixed(const Fixed &src) : _rawBits(src._rawBits) { }
+Fixed::Fixed(const Fixed &src) : m_rawBits(src.m_rawBits) { }
 
 Fixed::Fixed(const int value) {
 	if (BYTE_ORDER == LITTLE_ENDIAN)
-		_rawBits = (value << _nbBits);
+		m_rawBits = (value << m_nbBits);
 	else
-		_rawBits = (value >> _nbBits);
+		m_rawBits = (value >> m_nbBits);
 }
 
 Fixed::Fixed(const float value) {
 	if (BYTE_ORDER == LITTLE_ENDIAN)
-		_rawBits = roundf(value * (1 << _nbBits));
+		m_rawBits = roundf(value * (1 << m_nbBits));
 	else
-		_rawBits = roundf(value * (1 >> _nbBits));
+		m_rawBits = roundf(value * (1 >> m_nbBits));
 }
 
 Fixed	&Fixed::operator =(const Fixed src) {
-	_rawBits = src._rawBits;
+	m_rawBits = src.m_rawBits;
 	return *this;
 }
 
 Fixed	&Fixed::operator ++(void) {
-	++_rawBits;
+	++m_rawBits;
 	return *this;
 }
 
@@ -69,7 +69,7 @@ Fixed	Fixed::operator ++(int) {
 }
 
 Fixed	&Fixed::operator --(void) {
-	--_rawBits;
+	--m_rawBits;
 	return *this;
 }
 
@@ -80,22 +80,22 @@ Fixed	Fixed::operator --(int) {
 	return ret;
 }
 
-int	Fixed::getRawBits(void) const { return _rawBits; }
+int	Fixed::getRawBits(void) const { return m_rawBits; }
 
-void	Fixed::setRawBits(int rawBits) { _rawBits = rawBits; }
+void	Fixed::setRawBits(int rawBits) { m_rawBits = rawBits; }
 
-int	Fixed::getNbBits(void) const { return _nbBits; }
+int	Fixed::getNbBits(void) const { return m_nbBits; }
 
 int	Fixed::toInt(void) const {
 	if (BYTE_ORDER == LITTLE_ENDIAN)
-		return _rawBits >> _nbBits;
-	return _rawBits << _nbBits;
+		return m_rawBits >> m_nbBits;
+	return m_rawBits << m_nbBits;
 }
 
 float	Fixed::toFloat(void) const {
 	if (BYTE_ORDER == LITTLE_ENDIAN)
-		return static_cast<float>(_rawBits) / (1 << _nbBits);
-	return static_cast<float>(_rawBits) / (1 >> _nbBits);
+		return static_cast<float>(m_rawBits) / (1 << m_nbBits);
+	return static_cast<float>(m_rawBits) / (1 >> m_nbBits);
 }
 
 const Fixed	&Fixed::max(const Fixed &a, const Fixed &b) {

@@ -6,58 +6,37 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/20 22:30:11 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2021/10/15 22:16:29 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/20 20:45:27 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CLAPTRAP_HPP
-# define CLAPTRAP_HPP
+#pragma once
 
-# include <string>
+#include <string>
 
 class ClapTrap {
 	public:
+		typedef	std::string	&exception_type;
 
-	typedef	std::string	&exception_type;
+		ClapTrap();
+		virtual ~ClapTrap();
 
-	ClapTrap();
-	virtual ~ClapTrap();
+		ClapTrap(const ClapTrap &other);
+		ClapTrap(std::string name);
 
-	ClapTrap(const ClapTrap &other);
-	ClapTrap(std::string name);
+		ClapTrap	&operator =(const ClapTrap &other);
 
-	ClapTrap	&operator=(const ClapTrap &other);
+		void	attack(std::string const &target);
+		void	takeDamage(unsigned amount);
+		void	beRepaired(unsigned amount);
 
-	void	attack(std::string const &target);
-	void	takeDamage(unsigned amount);
-	void	beRepaired(unsigned amount);
-
-	std::string	getName(void) const;
-	int			getHp(void) const;
-	int			getEp(void) const;
-	int			getDmg(void) const;
-
-	void		setName(std::string name);
-	void		setHp(int hp);
-	void		setEp(int ep);
-	void		setDmg(int dmg);
-
-	void	enableDebugInfos(void);
-	void	debugInfo(void) const;
-
+		void	enableDebugInfos(void);
+		void	debugInfo(void) const;
 
 	protected:
-
-	void	announceBegin(void) const;
-	void	announceEnd(void) const;
-
-	std::string	_type;
-
-	std::string	_name;
-	int			_hp;
-	int			_ep;
-	int			_dmg;
-	bool		_debugInfo;
+		std::string	m_name;
+		int			m_hp;
+		int			m_ep;
+		int			m_dmg;
+		bool		m_debugInfo;
 };
-
-#endif //CLAPTRAP_HPP

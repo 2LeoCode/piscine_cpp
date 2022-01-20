@@ -6,7 +6,7 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 17:48:52 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2022/01/20 00:14:25 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/20 18:19:25 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,9 @@ class Fixed {
 		float	toFloat(void) const;
 
 	private:
-		static const int	_nbBits;
-		int					_rawBits;
+		static const int	m_nbBits;
+	
+		int					m_rawBits;
 };
 
 std::ostream	&operator <<(std::ostream &out, const Fixed &nb);
