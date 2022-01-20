@@ -6,7 +6,7 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 17:55:32 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2022/01/20 00:45:38 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/20 17:42:37 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 	std::cout << std::endl;\
 } while (0)
 
-const int	Fixed::_nbBits(8);
+const int	Fixed::_nbBits = 8;
 
 Fixed::Fixed() : _rawBits(0) { }
 
@@ -40,14 +40,14 @@ Fixed::Fixed(const Fixed &src) : _rawBits(src._rawBits) { }
 Fixed::Fixed(const int value) {
 	if (BYTE_ORDER == LITTLE_ENDIAN)
 		_rawBits = (value << _nbBits);
-	else if (BYTE_ORDER == BIG_ENDIAN)
+	else
 		_rawBits = (value >> _nbBits);
 }
 
 Fixed::Fixed(const float value) {
 	if (BYTE_ORDER == LITTLE_ENDIAN)
 		_rawBits = roundf(value * (1 << _nbBits));
-	else if (BYTE_ORDER == BIG_ENDIAN)
+	else
 		_rawBits = roundf(value * (1 >> _nbBits));
 }
 
@@ -56,29 +56,28 @@ Fixed	&Fixed::operator =(const Fixed src) {
 	return *this;
 }
 
-Fixed	&Fixed::operator++(void) {
-
+Fixed	&Fixed::operator ++(void) {
 	++_rawBits;
 	return *this;
 }
 
-Fixed	Fixed::operator++(int) {
-	Fixed	ret = *this;
+Fixed	Fixed::operator ++(int) {
+	Fixed	ret(*this);
 
 	++*this;
 	return ret;
 }
 
-Fixed	&Fixed::operator--(void) {
+Fixed	&Fixed::operator --(void) {
 	--_rawBits;
-	return (*this);
+	return *this;
 }
 
-Fixed	Fixed::operator--(int) {
-	Fixed	ret = *this;
+Fixed	Fixed::operator --(int) {
+	Fixed	ret(*this);
 
 	--*this;
-	return (ret);
+	return ret;
 }
 
 int	Fixed::getRawBits(void) const { return _rawBits; }
@@ -89,7 +88,7 @@ int	Fixed::getNbBits(void) const { return _nbBits; }
 
 int	Fixed::toInt(void) const {
 	if (BYTE_ORDER == LITTLE_ENDIAN)
-		return (_rawBits >> _nbBits);
+		return _rawBits >> _nbBits;
 	return _rawBits << _nbBits;
 }
 
@@ -99,25 +98,17 @@ float	Fixed::toFloat(void) const {
 	return static_cast<float>(_rawBits) / (1 >> _nbBits);
 }
 
-Fixed	&Fixed::min(Fixed &a, Fixed &b) {
-	if (a > b) return b;
-	return a;
+const Fixed	&Fixed::max(const Fixed &a, const Fixed &b) {
+	return a < b ? b : a;
 }
 
 const Fixed	&Fixed::min(const Fixed &a, const Fixed &b) {
-	if (a > b) return b;
-	return a;
+	return a > b ? b : a;
 }
 
-Fixed	&Fixed::max(Fixed &a, Fixed &b) {
-	if (a < b) return b;
-	return a;
-}
+Fixed	&Fixed::max(Fixed &a, Fixed &b) { return a < b ? b : a; }
 
-const Fixed	&Fixed::max(const Fixed &a, const Fixed &b) {
-	if (a < b) return b;
-	return a;
-}
+Fixed	&Fixed::min(Fixed &a, Fixed &b) { return a > b ? b : a; }
 
 std::ostream	&operator <<(std::ostream &out, const Fixed &nb) {
 	out << nb.toFloat();
@@ -137,7 +128,6 @@ bool	operator <(Fixed a, Fixed b) { return !(a >= b); }
 bool	operator >=(Fixed a, Fixed b) { return a == b || a > b; }
 
 bool	operator <=(Fixed a, Fixed b) { return !(a > b); }
-
 
 bool	operator !=(Fixed a, Fixed b) { return !(a == b); }
 

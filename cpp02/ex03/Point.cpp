@@ -6,7 +6,7 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/20 14:24:58 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2022/01/20 00:38:43 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/20 17:45:36 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ Point	&Point::operator =(const Point &other) {
 }
 
 bool	operator ==(const Point &a, const Point &b) {
-	return a.getX() == b.getX() && a.getY() == b.getY();
+	return a.x() == b.x() && a.y() == b.y();
 }
 
-const Fixed	Point::getX(void) const { return _x; }
+const Fixed	&Point::x(void) const { return _x; }
 
-const Fixed	Point::getY(void) const { return _y; }
+const Fixed	&Point::y(void) const { return _y; }

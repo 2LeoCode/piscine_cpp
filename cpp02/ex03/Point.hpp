@@ -6,7 +6,7 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/20 14:24:55 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2022/01/20 00:38:47 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/20 17:45:11 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ class Point {
 
 	Point	&operator =(const Point &other);
 
-	const Fixed	getX(void) const;
-	const Fixed	getY(void) const;
+	const Fixed	&x(void) const;
+	const Fixed	&y(void) const;
 
 	private:
 

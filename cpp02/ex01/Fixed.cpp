@@ -6,7 +6,7 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 17:55:32 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2022/01/20 00:45:22 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/20 17:31:36 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 	std::cout << std::endl;\
 } while (0)
 
-const int	Fixed::_nbBits(8);
+const int	Fixed::_nbBits = 8;
 
 Fixed::Fixed() : _rawBits(0) {
 	std::cout << "Default constructor called" << std::endl;
