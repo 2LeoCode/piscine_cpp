@@ -6,7 +6,7 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 16:13:47 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2021/10/26 16:20:39 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/23 14:14:34 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,15 @@
 
 #include <iostream>
 
-#define M(memberName) AMateria::memberName
+AMateria::AMateria() { }
 
-M(AMateria)() {
-	std::cout << "AMateria constructor called" << std::endl;
+AMateria::~AMateria() { }
+
+AMateria::AMateria(const AMateria &other) : m_type(other.m_type) { }
+
+AMateria	&AMateria::operator =(const AMateria &other) {
+	m_type = other.m_type;
+	return *this;
 }
 
-M(~AMateria)() {
-	std::cout << "AMateria destructor called" << std::endl;
-}
-
-M(AMateria)(const AMateria &other) : _type(other._type) {
-	std::cout << "AMateria copy constructor called" << std::endl;
-}
-
-AMateria	&M(operator=)(const AMateria &other) {
-	_type = other._type;
-	return (*this);
-}
-
-const std::string	&M(getType)(void) const {
-	return (_type);
-}
+const std::string	&AMateria::getType(void) const { return m_type; }

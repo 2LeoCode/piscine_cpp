@@ -6,7 +6,7 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 15:00:57 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2021/10/24 23:40:03 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/23 13:42:09 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,18 @@
 
 #include <iostream>
 
-#define M(memberName) Dog::memberName
+Dog::Dog() : m_brain(new Brain) { m_type = "Dog"; }
 
-M(Dog)() {
-	static int	cnt = 0;
-	_type = "Dog";
-	_brain = new Brain;
-	std::cout << "Dog constructor called " << ++cnt << std::endl;
+Dog::Dog(const Dog &other)
+:	Animal(other),
+	m_brain(new Brain(*other.m_brain)) { }
+
+Dog::~Dog( ) { delete m_brain; }
+
+Dog	&Dog::operator =(const Dog &other) {
+	delete m_brain;
+	m_brain = new Brain(*other.m_brain);
+	return *this;
 }
 
-M(~Dog)() {
-	static int	cnt = 0;
-	delete _brain;
-	std::cout << "Dog destructor called " << ++cnt << std::endl;
-}
-
-M(Dog)(const Dog &other) {
-	static int	cnt = 0;
-
-	_type = other._type;
-	_brain = new Brain(*other._brain);
-	std::cout << "Dog copy constructor called " << ++cnt << std::endl;
-}
-
-void	M(makeSound)(void) const {
-	std::cout << "Bark" << std::endl;
-}
+void	Dog::makeSound(void) const { std::cout << "Bark" << std::endl; }

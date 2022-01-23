@@ -6,7 +6,7 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 16:26:23 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2021/10/26 16:26:50 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/23 15:31:05 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,12 @@
 
 # include "AMateria.hpp"
 
-class Cure : public AMateria {
-	public:
-
+struct Cure : public AMateria {
 	Cure();
 	~Cure();
 
-
 	virtual AMateria	*clone(void) const;
 	virtual void		use(ICharacter &target);
-	private:
 };
 
 #endif //CURE_HPP

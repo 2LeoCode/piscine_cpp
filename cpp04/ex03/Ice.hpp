@@ -6,24 +6,18 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 16:20:02 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2021/10/26 16:23:02 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/23 15:32:50 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ICE_HPP
-# define ICE_HPP
+#pragma once
 
-# include "AMateria.hpp"
+#include "AMateria.hpp"
 
-class Ice : public AMateria {
-	public:
-
+struct Ice : public AMateria {
 	Ice();
 	~Ice();
 
 	virtual AMateria	*clone(void) const;
 	virtual void		use(ICharacter &target);
-	private:
 };
-
-#endif //ICE_HPP

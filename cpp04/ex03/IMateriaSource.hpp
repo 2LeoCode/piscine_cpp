@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Brain.hpp                                          :+:      :+:    :+:   */
+/*   IMateriaSource.hpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/24 17:14:26 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2022/01/23 13:29:17 by Leo Suardi       ###   ########.fr       */
+/*   Created: 2022/01/23 15:36:12 by Leo Suardi        #+#    #+#             */
+/*   Updated: 2022/01/23 15:40:46 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include <string>
+#include "AMateria.hpp"
 
-class Brain {
-	public:
-		Brain();
-		~Brain();
-
-		Brain(const Brain&);
-		Brain	&operator=(const Brain&);
-
-	private:
-		std::string	m_ideas[100];
+struct IMateriaSource {
+	virtual	~IMateriaSource() { }
+	virtual void		learnMateria(AMateria*) = 0;
+	virtual AMateria*	createMateria(const std::string&) = 0;
 };

@@ -1,27 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Brain.hpp                                          :+:      :+:    :+:   */
+/*   utils.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/24 17:14:26 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2022/01/23 13:29:17 by Leo Suardi       ###   ########.fr       */
+/*   Created: 2022/01/23 15:48:23 by Leo Suardi        #+#    #+#             */
+/*   Updated: 2022/01/23 15:50:16 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
-
-#include <string>
-
-class Brain {
-	public:
-		Brain();
-		~Brain();
-
-		Brain(const Brain&);
-		Brain	&operator=(const Brain&);
-
-	private:
-		std::string	m_ideas[100];
-};
+namespace ft {
+	template < class InputIt, class OutputIt >
+	OutputIt	copy(InputIt first, InputIt last, OutputIt d_first) {
+		while (first != last)
+			*d_first++ = *first++;
+		return d_first;
+	}
+}

@@ -6,23 +6,20 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 15:01:07 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2021/10/24 15:01:14 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/22 18:12:31 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-# define CAT_HPP
+#pragma once
 
-# include "Animal.hpp"
+#include "Animal.hpp"
 
-class Cat : public Animal {
-	public:
-
+struct Cat : public Animal {
 	Cat();
+	Cat(const Cat&);
 	~Cat();
 
-	void	makeSound(void) const;
-	private:
-};
+	Cat	&operator =(const Cat&);
 
-#endif //CAT_HPP
+	void	makeSound(void) const;
+};

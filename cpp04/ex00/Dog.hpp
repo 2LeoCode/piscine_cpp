@@ -6,23 +6,20 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 15:01:19 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2021/10/24 15:01:20 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/23 13:29:40 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DOG_HPP
-# define DOG_HPP
+#pragma once
 
-# include "Animal.hpp"
+#include "Animal.hpp"
 
-class Dog : public Animal {
-	public:
-
+struct Dog : public Animal {
 	Dog();
+	Dog(const Dog&);
 	~Dog();
 
-	void	makeSound(void) const;
-	private:
-};
+	Dog	&operator =(const Dog&);
 
-#endif //DOG_HPP
+	void	makeSound(void) const;
+};

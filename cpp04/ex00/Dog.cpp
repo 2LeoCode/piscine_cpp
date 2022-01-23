@@ -6,7 +6,7 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 15:00:57 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2021/10/24 15:19:39 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/22 18:56:39 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,15 @@
 
 #include <iostream>
 
-#define M(memberName) Dog::memberName
+Dog::Dog() { m_type = "Dog"; }
 
-M(Dog)() {
-	_type = "Dog";
-	std::cout << "Dog constructor called" << std::endl;
+Dog::Dog(const Dog &other) : Animal(other) { }
+
+Dog::~Dog( ) { }
+
+Dog	&Dog::operator =(const Dog &other) {
+	static_cast< void >(other);
+	return *this;
 }
 
-M(~Dog)() {
-	std::cout << "Dog destructor called" << std::endl;
-}
-
-void	M(makeSound)(void) const {
-	std::cout << "Bark" << std::endl;
-}
+void	Dog::makeSound(void) const { }

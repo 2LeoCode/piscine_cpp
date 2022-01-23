@@ -3,18 +3,20 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: crochu <crochu@student.42.fr>              +#+  +:+       +#+         #
+#    By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/15 01:17:37 by Leo Suardi        #+#    #+#              #
-#    Updated: 2021/11/02 16:16:14 by crochu           ###   ########.fr        #
+#    Updated: 2022/01/22 17:18:31 by Leo Suardi       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME=animal
+
+INC=$(wildcard *.hpp)
 SRC=$(wildcard *.cpp)
 OBJ=$(SRC:.cpp=.o)
 
-CC=clang++
+CC=c++
 CFLAGS=-Wall -Werror -Wextra -std=c++98 #-fsanitize=address
 
 all: $(NAME)
@@ -22,7 +24,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $^ -o $@
 
-%.o: %.cpp
+%.o: %.cpp $(INC) Makefile
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:

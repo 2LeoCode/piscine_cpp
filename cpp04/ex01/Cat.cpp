@@ -6,7 +6,7 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 15:01:04 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2021/10/24 23:41:00 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/23 13:35:33 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,18 @@
 
 #include <iostream>
 
-#define M(memberName) Cat::memberName
+Cat::Cat() : m_brain(new Brain) { m_type = "Cat"; }
 
-M(Cat)() {
-	static int	cnt = 0;
-	_type = "Cat";
-	_brain = new Brain;
-	std::cout << "Cat constructor called " << ++cnt << std::endl;
+Cat::Cat(const Cat &other)
+:	Animal(other),
+	m_brain(new Brain(*other.m_brain)) { }
+
+Cat::~Cat() { delete m_brain; }
+
+Cat	&Cat::operator =(const Cat &other) {
+	delete m_brain;
+	m_brain = new Brain(*other.m_brain);
+	return *this;
 }
 
-M(~Cat)() {
-	static int	cnt = 0;
-	delete _brain;
-	std::cout << "Cat destructor called " << ++cnt << std::endl;
-}
-
-M(Cat)(const Cat &other) {
-	static int	cnt = 0;
-	_type = other._type;
-	_brain = new Brain(*other._brain);
-	std::cout << "Cat copy constructor called " << ++cnt << std::endl;
-}
-
-void	M(makeSound)(void) const {
-	std::cout << "Meow" << std::endl;
-}
+void	Cat::makeSound(void) const { std::cout << "Meow" << std::endl; }

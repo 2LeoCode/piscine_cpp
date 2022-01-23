@@ -6,44 +6,36 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 15:02:21 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2021/10/24 17:50:08 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/23 13:50:54 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UNIQUEPTR_HPP
-# define UNIQUEPTR_HPP
+#pragma once
 
-template <typename T>
+#include <cstddef>
+
+template < typename T >
 class UniquePtr {
 	public:
+		UniquePtr() : m_ptr(NULL) { }
+		~UniquePtr() { delete m_ptr; }
 
-	UniquePtr() : _ptr(nullptr) { }
-	~UniquePtr() {
-		delete _ptr;
-	}
+		UniquePtr(const UniquePtr &other)
+		:	m_ptr(const_cast< UniquePtr& >(other).m_ptr) { }
+		UniquePtr(T *ptr) : m_ptr(ptr) { }
 
-	UniquePtr(const UniquePtr &other) : _ptr(other._ptr) { }
-	UniquePtr(const T *ptr) : _ptr(ptr) { }
+		UniquePtr	&operator =(const UniquePtr &other) {
+			m_ptr = const_cast< UniquePtr& >(other).m_ptr;
+			return *this;
+		}
+		UniquePtr	&operator =(T *ptr) {
+			m_ptr = ptr;
+			return *this;
+		}
 
-	UniquePtr	&operator=(const UniquePtr &other) {
-		_ptr = other._ptr;
-		return (*this);
-	}
-	UniquePtr	&operator=(T *ptr) {
-		_ptr = ptr;
-		return (*this);
-	}
-
-	T			&operator*(void) {
-		return (*_ptr);
-	}
-	T			*operator->(void) {
-		return (_ptr);
-	}
+		T			&operator *(void) { return *m_ptr; }
+		T			*operator ->(void) { return m_ptr; }
 
 	private:
-
-	T	*_ptr;
+		T	*m_ptr;
 };
-
-#endif //UNIQUEPTR_HPP

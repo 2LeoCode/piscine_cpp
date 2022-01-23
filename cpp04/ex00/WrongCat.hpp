@@ -6,22 +6,19 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 15:01:07 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2021/10/24 17:09:40 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/22 18:22:48 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WRONGCAT_HPP
-# define WRONGCAT_HPP
+#pragma once
 
-# include "WrongAnimal.hpp"
+#include "WrongAnimal.hpp"
 
-class WrongCat : public WrongAnimal {
-	public:
-
+struct WrongCat : public WrongAnimal {
 	WrongCat();
+	WrongCat(const WrongCat&);
+
 	~WrongCat();
 
-	private:
+	WrongCat	&operator =(const WrongCat&);
 };
-
-#endif //WRONGCAT_HPP

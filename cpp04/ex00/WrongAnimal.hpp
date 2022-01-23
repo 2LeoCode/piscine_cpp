@@ -6,27 +6,24 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 14:38:32 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2021/10/24 17:06:12 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/22 18:19:12 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WRONGANIMAL_HPP
-# define WRONGANIMAL_HPP
+#pragma once
 
-# include <string>
+#include <string>
 
 class WrongAnimal {
 	public:
+		WrongAnimal();
+		WrongAnimal(const WrongAnimal&);
+		virtual ~WrongAnimal();
 
-	WrongAnimal();
-	virtual ~WrongAnimal();
-
-	virtual void	makeSound(void) const;
-	const std::string	&getType(void) const;
+		WrongAnimal	&operator =(const WrongAnimal&);
+		virtual void	makeSound(void) const;
+		const std::string	&getType(void) const;
 
 	protected:
-
-	std::string	_type;
+		std::string	m_type;
 };
-
-#endif //WRONGANIMAL_HPP

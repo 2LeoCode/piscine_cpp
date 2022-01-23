@@ -6,16 +6,15 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 16:30:18 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2021/10/27 15:38:35 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/23 15:34:17 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ICHARACTER_HPP
-# define ICHARACTER_HPP
+#pragma once
 
-# include "AMateria.hpp"
+#include "AMateria.hpp"
 
-# include <string>
+#include <string>
 
 class AMateria;
 
@@ -29,5 +28,3 @@ class ICharacter
 	virtual void unequip(int idx) = 0;
 	virtual void use(int idx, ICharacter& target) = 0;
 };
-
-#endif //ICHARACTER_HPP

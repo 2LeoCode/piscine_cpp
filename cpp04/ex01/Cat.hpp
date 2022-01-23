@@ -6,30 +6,25 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 15:01:07 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2021/10/24 22:40:42 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/23 13:19:18 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-# define CAT_HPP
+#pragma once
 
-# include "Animal.hpp"
-# include "Brain.hpp"
+#include "Animal.hpp"
+#include "Brain.hpp"
 
-class Cat : public Animal {
+struct Cat : public Animal {
 	public:
+		Cat();
+		Cat(const Cat&);
+		~Cat();
 
-	Cat();
-	~Cat();
+		Cat	&operator =(const Cat&);
 
-	Cat(const Cat &other);
-
-	void	makeSound(void) const;
-
+		void	makeSound(void) const;
 
 	private:
-
-	Brain	*_brain;
+		Brain	*m_brain;
 };
-
-#endif //CAT_HPP

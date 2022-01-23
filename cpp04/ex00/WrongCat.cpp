@@ -6,7 +6,7 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 15:01:04 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2021/10/24 17:06:41 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/22 18:50:28 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 #include <iostream>
 
-#define M(memberName) WrongCat::memberName
+WrongCat::WrongCat() { m_type = "WrongCat"; }
 
-M(WrongCat)() {
-	_type = "WrongCat";
-	std::cout << "WrongCat constructor called" << std::endl;
+WrongCat::WrongCat(const WrongCat &other) : WrongAnimal(other) { }
+
+WrongCat	&WrongCat::operator =(const WrongCat &other) {
+	static_cast< void >(other);
+	return *this;
 }
 
-M(~WrongCat)() {
-	std::cout << "WrongCat destructor called" << std::endl;
-}
+WrongCat::~WrongCat() { }

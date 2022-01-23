@@ -6,7 +6,7 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 17:31:45 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2021/10/24 23:41:13 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/23 13:38:18 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,17 @@
 
 #include <iostream>
 
-#define M(memberName) Brain::memberName
+Brain::Brain() { }
 
-M(Brain)() {
-	static int	cnt = 0;
-	std::cout << "Brain constructor called " << ++cnt << std::endl;
+Brain::~Brain() { }
+
+Brain::Brain(const Brain &other) {
+	for (unsigned i = 0; i < 100; ++i)
+		m_ideas[i] = other.m_ideas[i];
 }
 
-M(~Brain)() {
-	static int	cnt = 0;
-	std::cout << "Brain destructor called " << ++cnt << std::endl;
-}
-
-M(Brain)(const Brain &other) {
-	static int	cnt = 0;
-	for (unsigned i = 0; i < 100; ++i) {
-		_ideas[i] = other._ideas[i];
-	}
-	std::cout << "Brain copy constructor called " << ++cnt << std::endl;
-}
-
-Brain	&M(operator=)(const Brain &other) {
-	for (unsigned i = 0; i < 100; ++i) {
-		_ideas[i] = other._ideas[i];
-	}
-	return (*this);
+Brain	&Brain::operator =(const Brain &other) {
+	for (unsigned i = 0; i < 100; ++i)
+		m_ideas[i] = other.m_ideas[i];
+	return *this;
 }

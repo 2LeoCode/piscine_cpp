@@ -6,27 +6,25 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 14:38:32 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2021/10/24 15:17:17 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/22 18:12:25 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-# define ANIMAL_HPP
+#pragma once
 
-# include <string>
+#include <string>
 
 class Animal {
 	public:
+		Animal();
+		Animal(const Animal&);
+		virtual ~Animal();
 
-	Animal();
-	virtual ~Animal();
+		Animal	&operator =(const Animal&);
 
-	virtual void	makeSound(void) const;
-	const std::string	&getType(void) const;
+		virtual void		makeSound(void) const;
+		const std::string	&getType(void) const;
 
 	protected:
-
-	std::string	_type;
+		std::string	m_type;
 };
-
-#endif //ANIMAL_HPP
