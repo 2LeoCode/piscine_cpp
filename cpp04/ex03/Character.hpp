@@ -6,7 +6,7 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 16:30:37 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2022/01/23 15:56:35 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/23 18:01:47 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,5 @@ class Character : public ICharacter {
 	private:
 		std::string	m_name;
 		AMateria	*m_inventory[4];
-		unsigned	m_itemCnt;
+		int			m_itemCnt;
 };

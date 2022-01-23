@@ -1,0 +1,2 @@
+cure "heals %'s wounds"
+fire "shoots a fireball at %"
