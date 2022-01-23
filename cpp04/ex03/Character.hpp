@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Character.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
+/*   By: lsuardi <lsuardi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 16:30:37 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2022/01/23 18:01:47 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/23 23:35:02 by lsuardi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ class Character : public ICharacter {
 		Character();
 		~Character();
 
-		Character(const ICharacter &other);
+		Character(const Character &other);
 		Character(std::string name);
 
-		Character	&operator=(const ICharacter &other);
+		Character	&operator=(const Character &other);
 
 		virtual std::string const	&getName(void) const;
 		virtual void				equip(AMateria *m);
@@ -30,8 +30,12 @@ class Character : public ICharacter {
 		virtual void				use(int idx, ICharacter &target);
 		void						deleteInventory(void);
 
+		struct EInventoryFull {
+			const char	*what(void) const throw ();
+		};
+
 	private:
 		std::string	m_name;
 		AMateria	*m_inventory[4];
-		int			m_itemCnt;
+		bool		m_occupied[4];
 };

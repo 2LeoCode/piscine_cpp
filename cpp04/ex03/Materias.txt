@@ -1,2 +1,3 @@
-cure "heals %'s wounds"
-fire "shoots a fireball at %"
+fireball "shoots a fireball at %"
+poison "poisons %"
+earthquake "starts an earthquake under %'s feet"

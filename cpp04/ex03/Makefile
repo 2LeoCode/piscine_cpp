@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+         #
+#    By: lsuardi <lsuardi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/15 01:17:37 by Leo Suardi        #+#    #+#              #
-#    Updated: 2022/01/23 14:08:10 by Leo Suardi       ###   ########.fr        #
+#    Updated: 2022/01/23 23:23:44 by lsuardi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $^ -o $@
 
-%.o: %.cpp $(INC) Makefile
+%.o: %.cpp $(INC)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:

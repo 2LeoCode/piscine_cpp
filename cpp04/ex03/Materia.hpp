@@ -1,24 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cure.hpp                                           :+:      :+:    :+:   */
+/*   Materia.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsuardi <lsuardi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/26 16:26:23 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2022/01/23 22:53:05 by lsuardi          ###   ########.fr       */
+/*   Created: 2022/01/23 18:43:19 by lsuardi           #+#    #+#             */
+/*   Updated: 2022/01/23 23:20:35 by lsuardi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "Materia.hpp"
+#include "AMateria.hpp"
 
-struct Cure : public Materia {
-	Cure();
-	Cure(const Cure&);
-	~Cure();
+#include <iostream>
 
-	Cure	&operator =(const Cure&);
+class Materia : public AMateria {
+	public:
+		Materia();
+		Materia(const Materia &other);
+ 		Materia(std::string name, std::string msg);
+		virtual ~Materia();
+
+		Materia &operator =(const Materia &other);
+
+		AMateria	*clone(void) const;
+		void		use(ICharacter &target);
+
+	protected:
+		std::string	m_msg;
 };
 
+std::istream	&operator >>(std::istream &in, Materia &m);

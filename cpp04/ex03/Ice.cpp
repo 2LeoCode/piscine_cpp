@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Ice.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
+/*   By: lsuardi <lsuardi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 16:22:10 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2022/01/23 15:33:36 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/23 23:21:05 by lsuardi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,18 @@
 
 #include "Ice.hpp"
 
-Ice::Ice() { m_type = "ice"; }
+Ice::Ice() { m_type = "ice", m_msg = "shoots an ice bolt at %"; }
+
+Ice::Ice(const Ice &other) {
+
+	static_cast< void >(other);
+	m_type = "ice";
+	m_msg = "shoots an ice bolt at %";
+}
 
 Ice::~Ice() { }
 
-AMateria	*Ice::clone(void) const { return new Ice; }
-
-void	Ice::use(ICharacter &target) {
-	std::cout <<
-		"* shoots an ice bolt at " << target.getName() << " *" <<
-	std::endl;
+Ice	&Ice::operator =(const Ice &other) {
+	static_cast< void >(other);
+	return *this;
 }

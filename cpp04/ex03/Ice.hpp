@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   Ice.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
+/*   By: lsuardi <lsuardi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 16:20:02 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2022/01/23 15:32:50 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/23 23:20:00 by lsuardi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "AMateria.hpp"
+#include "Materia.hpp"
 
-struct Ice : public AMateria {
+struct Ice : public Materia {
 	Ice();
+	Ice(const Ice &other);
 	~Ice();
 
-	virtual AMateria	*clone(void) const;
-	virtual void		use(ICharacter &target);
+	Ice	&operator =(const Ice &other);
 };
