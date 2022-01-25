@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RobotomyRequestForm.cpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crochu <crochu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 22:45:50 by crochu            #+#    #+#             */
-/*   Updated: 2021/11/03 00:26:04 by crochu           ###   ########.fr       */
+/*   Updated: 2022/01/25 23:29:15 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 #include <iostream>
 
 #include <cstdlib>
-
-#define RRF RobotomyRequestForm
 
 void requestRobotomy(std::string target) {
 	std::cout << "* drill noises *" << std::endl;
@@ -27,7 +25,7 @@ void requestRobotomy(std::string target) {
 		std::cout << "Failed to robotomize " << target << std::endl;
 }
 
-RRF::RobotomyRequestForm(std::string target) :
+RobotomyRequestForm::RobotomyRequestForm(std::string target) :
 Form("robotomy request", target, 72, 45, requestRobotomy) { }
 
-void RRF::__abstract__() { }
+void RobotomyRequestForm::m__abstract__(void) const { }

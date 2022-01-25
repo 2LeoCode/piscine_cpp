@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Form.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crochu <crochu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 15:21:34 by crochu            #+#    #+#             */
-/*   Updated: 2021/11/03 12:23:33 by crochu           ###   ########.fr       */
+/*   Updated: 2022/01/25 23:20:21 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,36 +20,38 @@ class Bureaucrat;
 
 class Form {
 	public:
+		Form();
+		Form(std::string, std::string, int, int, void (*)(std::string));
+		Form(const Form &other);
+		virtual ~Form();
 
-	Form(std::string name = "generic", std::string target = "dummy",
-		int gradeToSign = 150, int gradeToExec = 150,
-		void (*action)(std::string) = NULL);
-	virtual ~Form();
+		Form	&operator =(const Form&);
 
-	const std::string	&getName(void) const;
-	int					getGradeToSign(void) const;
-	int					getGradeToExec(void) const;
-	bool				isSigned(void) const;
+		const std::string	&getName(void) const;
+		int					gradeToSign(void) const;
+		int					gradeToExec(void) const;
+		bool				isSigned(void) const;
 
-	Form	&beSigned(const Bureaucrat &b);
-	Form	&beExecuted(const Bureaucrat &b);
+		Form		&beSigned(const Bureaucrat&);
+		const Form	&execute(const Bureaucrat&) const;
 
-	struct FormNotSignedException : public std::exception {
-		virtual const char	*what() const throw();
-	};
-	struct FormAlreadySignedException : public std::exception {
-		virtual const char	*what() const throw ();
-	};
-	virtual void	_() = 0;
+		struct ENotSigned : public std::exception {
+			virtual const char	*what() const throw();
+		};
+		struct EAlreadySigned : public std::exception {
+			virtual const char	*what() const throw ();
+		};
+
 
 	protected:
+		virtual void		m__abstract__(void) const = 0;
 
-	const std::string	_name;
-	const std::string	_target;
-	void				(*_action)(std::string);
-	const int			_gradeToSign;
-	const int			_gradeToExec;
-	bool				_signed;
+
+	private:
+		const std::string	m_name, m_target;
+		const int			m_gradeToSign, m_gradeToExec;
+		void				(*m_action)(std::string);
+		bool				m_signed;
 };
 
 std::ostream	&operator<<(std::ostream &out, Form &f);

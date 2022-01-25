@@ -3,24 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   Intern.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crochu <crochu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 00:22:03 by crochu            #+#    #+#             */
-/*   Updated: 2021/11/03 01:14:23 by crochu           ###   ########.fr       */
+/*   Updated: 2022/01/26 00:03:18 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INTERN_HPP
-# define INTERN_HPP
+#pragma once
 
-# include "Form.hpp"
+#include "Form.hpp"
 
-# include <string>
+#include <string>
 
-class Intern {
-	public:
+struct Intern {
+	Intern();
+	Intern(const Intern&);
+	~Intern();
 
+	Intern	&operator =(const Intern&);
 	Form *makeForm(std::string type, std::string target);
+	struct EDoesNotExist : public std::exception {
+		const char	*what(void) const throw ();
+	};
 };
-
-#endif

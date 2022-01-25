@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ShrubberyCreationForm.cpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crochu <crochu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 16:55:40 by crochu            #+#    #+#             */
-/*   Updated: 2021/11/03 12:24:24 by crochu           ###   ########.fr       */
+/*   Updated: 2022/01/25 23:49:20 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,33 +15,33 @@
 #include <fstream>
 #include <string>
 
-#define SCF ShrubberyCreationForm
+#define ShrubberyCreationForm ShrubberyCreationForm
 
 void createShrubbery(std::string target) {
 	std::ofstream	out((target + "_shrubbery").c_str(), std::ios::out | std::ios::trunc);
 
 	if (!out) throw std::runtime_error("Failed to open output file");
-	out << "         v" << std::endl <<
-	"        >X<" << std::endl <<
-	"         A" << std::endl <<
-	"        d$b" << std::endl <<
-	"      .d\\$$b." << std::endl <<
-	"    .d$i$$\\$$b." << std::endl <<
-	"       d$$@b" << std::endl <<
-	"      d\\$$$ib" << std::endl <<
-	"    .d$$$\\$$$b" << std::endl <<
-	"  .d$$@$$$$\\$$ib." << std::endl <<
-	"      d$$i$$b" << std::endl <<
-	"     d\\$$$$@$b" << std::endl <<
-	"  .d$@$$\\$$$$$@b." << std::endl <<
-	".d$$$$i$$$\\$$$$$$b." << std::endl <<
-	"        ###" << std::endl <<
-	"        ###" << std::endl <<
-	"        ### mh" << std::endl;
-	out.close();
+	out <<
+		"         v\n"
+		"        >X<\n"
+		"         A\n"
+		"        d$b\n"
+		"      .d\\$$b.\n"
+		"    .d$i$$\\$$b.\n"
+		"       d$$@b\n"
+		"      d\\$$$ib\n"
+		"    .d$$$\\$$$b\n"
+		"  .d$$@$$$$\\$$ib.\n"
+		"      d$$i$$b\n"
+		"     d\\$$$$@$b\n"
+		"  .d$@$$\\$$$$$@b.\n"
+		".d$$$$i$$$\\$$$$$$b.\n"
+		"        ###\n"
+		"        ###\n"
+		"        ### mh" << std::endl;
 }
 
-SCF::ShrubberyCreationForm(std::string target) :
-Form("shrubbery", target, 145, 137, createShrubbery) { }
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target)
+:	Form("shrubbery creation", target, 145, 137, createShrubbery) { }
 
-void SCF::_() { }
+void ShrubberyCreationForm::m__abstract__(void) const { }

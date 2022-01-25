@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Form.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crochu <crochu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 15:21:31 by crochu            #+#    #+#             */
-/*   Updated: 2021/11/03 00:07:40 by crochu           ###   ########.fr       */
+/*   Updated: 2022/01/25 23:43:40 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,64 +14,85 @@
 
 #include <iostream>
 
-#define F Form
+Form::Form()
+:	m_name("generic"),
+	m_target("dummy"),
+	m_gradeToSign(150),
+	m_gradeToExec(150),
+	m_action(NULL)
+{ }
 
-F::Form(std::string name, std::string target, int gradeToSign, int gradeToExec,
-	void (*action)(std::string)) : _name(name), _target(target),
-_action(action), _gradeToSign(gradeToSign), _gradeToExec(gradeToExec) {
-	if (_gradeToSign < 1 || _gradeToExec < 1)
-		throw Bureaucrat::GradeTooHighException();
-	if (_gradeToSign > 150 || _gradeToExec > 150)
-		throw Bureaucrat::GradeTooLowException();
+Form::Form(
+	std::string name, std::string target,
+	int gradeToSign, int gradeToExec,
+	void (*action)(std::string)
+) :	m_name(name),
+	m_target(target),
+	m_gradeToSign(gradeToSign),
+	m_gradeToExec(gradeToExec),
+	m_action(action) {
+	if (m_gradeToSign < 1 || m_gradeToExec < 1)
+		throw Bureaucrat::EGradeTooHigh();
+	if (m_gradeToSign > 150 || m_gradeToExec > 150)
+		throw Bureaucrat::EGradeTooLow();
 }
 
-F::~Form() { }
+Form::Form(const Form &other)
+:	m_name(other.m_name),
+	m_target(other.m_target),
+	m_gradeToSign(other.m_gradeToSign),
+	m_gradeToExec(other.m_gradeToExec),
+	m_action(other.m_action)
+{ }
 
-const std::string &F::getName(void) const {
-	return _name;
-}
+Form::~Form() { }
 
-int F::getGradeToSign(void) const {
-	return _gradeToSign;
-}
-
-int F::getGradeToExec(void) const {
-	return _gradeToExec;
-}
-
-bool F::isSigned(void) const {
-	return _signed;
-}
-
-Form &F::beSigned(const Bureaucrat &b) {
-	if (b.getGrade() > _gradeToSign)
-		throw Bureaucrat::GradeTooLowException();
-	_signed = true;
+Form	&Form::operator =(const Form &other) {
+	static_cast< void >(other);
 	return *this;
 }
 
-Form &F::beExecuted(const Bureaucrat &b) {
-	if (!_signed) throw FormNotSignedException();
-	if (b.getGrade() > _gradeToExec)
-		throw Bureaucrat::GradeTooLowException();
-	if (_action)
-		_action(_target);
+const std::string &Form::getName(void) const { return m_name; }
+
+int Form::gradeToSign(void) const { return m_gradeToSign; }
+
+int Form::gradeToExec(void) const { return m_gradeToExec; }
+
+bool Form::isSigned(void) const { return m_signed; }
+
+Form &Form::beSigned(const Bureaucrat &b) {
+	if (m_signed)
+		throw EAlreadySigned();
+	if (b.getGrade() > m_gradeToSign)
+		throw Bureaucrat::EGradeTooLow();
+	std::cout << b.getName() << " signs " << m_name << std::endl;
+	m_signed = true;
+	return *this;
+}
+
+const Form &Form::execute(const Bureaucrat &b) const {
+	if (!m_signed)
+		throw ENotSigned();
+	if (b.getGrade() > m_gradeToExec)
+		throw Bureaucrat::EGradeTooLow();
+	std::cout << b.getName() << " executes " << m_name << std::endl;
+	if (m_action)
+		m_action(m_target);
 	else
-		std::cout << _name << " has been executed on " << _target << std::endl;
+		std::cout << "But nothing happens..." << std::endl;
 	return *this;
 }
 
-const char *F::FormNotSignedException::what() const throw () {
+const char *Form::ENotSigned::what() const throw () {
 	return "Form not signed";
 }
 
-const char *F::FormAlreadySignedException::what() const throw () {
+const char *Form::EAlreadySigned::what() const throw () {
 	return "Form already signed";
 }
 
 std::ostream &operator<<(std::ostream &out, Form &f) {
-	out << f.getName() << " form grade to sign " << f.getGradeToSign() <<
-	", grade to execute " << f.getGradeToExec() << '.' << std::endl <<
-	"Signed: " << (f.isSigned() ? "true" : "false") << std::endl;
-	return out;
+	return out << f.getName() << " form grade to sign " << f.gradeToSign() <<
+		", grade to execute " << f.gradeToExec() << '.' << std::endl <<
+		"Signed: " << (f.isSigned() ? "true" : "false") << std::endl;
 }

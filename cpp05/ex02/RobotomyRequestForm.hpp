@@ -3,25 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crochu <crochu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 17:16:54 by crochu            #+#    #+#             */
-/*   Updated: 2021/11/03 00:26:55 by crochu           ###   ########.fr       */
+/*   Updated: 2022/01/25 23:28:57 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ROBOTOMYREQUESTFORM_HPP
-# define ROBOTOMYREQUESTFORM_HPP
+#pragma once
 
-# include "Bureaucrat.hpp"
-# include "Form.hpp"
+#include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 class RobotomyRequestForm : public Form {
 	public:
+		RobotomyRequestForm(std::string target = "dummy");
 
-	RobotomyRequestForm(std::string target = "dummy");
 
-	void	__abstract__();
+	private:
+		void	m__abstract__(void) const;
 };
-
-#endif

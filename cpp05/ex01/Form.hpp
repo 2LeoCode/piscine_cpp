@@ -3,54 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   Form.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crochu <crochu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 15:21:34 by crochu            #+#    #+#             */
-/*   Updated: 2021/11/03 00:59:20 by crochu           ###   ########.fr       */
+/*   Updated: 2022/01/25 23:45:09 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FORM_HPP
-# define FORM_HPP
+#pragma once
 
-# include "Bureaucrat.hpp"
-# include <string>
+#include "Bureaucrat.hpp"
+#include <string>
 
 class Bureaucrat;
 
 class Form {
 	public:
+		Form();
+		~Form();
 
-	Form();
-	~Form();
+		Form(const Form&);
 
-	Form(std::string name);
-	Form(std::string name, int gradeToSign, int gradeToExec);
+		Form(std::string);
+		Form(std::string, int);
 
-	const std::string	&getName(void) const;
-	int					getGradeToSign(void) const;
-	int					getGradeToExec(void) const;
-	bool				isSigned(void) const;
+		Form	&operator =(const Form&);
 
-	Form	&beSigned(const Bureaucrat &b);
-	Form	&beExecuted(const Bureaucrat &b);
+		const std::string	&getName(void) const;
+		int					gradeToSign(void) const;
+		bool				isSigned(void) const;
 
-	struct FormNotSignedException : public std::exception {
-		virtual const char	*what() const throw ();
-	};
-	struct FormAlreadySignedException : public std::exception {
-		virtual const char	*what() const throw ();
-	};
+		Form	&beSigned(const Bureaucrat&);
+
+		struct EAlreadySigned : public std::exception {
+			virtual const char	*what() const throw ();
+		};
 
 
 	private:
-
-	const std::string	_name;
-	const int			_gradeToSign;
-	const int			_gradeToExec;
-	bool				_signed;
+		const std::string	m_name;
+		const int			m_gradeToSign;
+		bool				m_signed;
 };
 
-std::ostream	&operator<<(std::ostream &out, Form &f);
-
-#endif
+std::ostream	&operator <<(std::ostream &, Form &);

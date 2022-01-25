@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PresidentialPardonForm.cpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crochu <crochu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 23:00:02 by crochu            #+#    #+#             */
-/*   Updated: 2021/11/03 12:23:21 by crochu           ###   ########.fr       */
+/*   Updated: 2022/01/25 23:29:22 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,13 @@
 
 #include <iostream>
 
-#define PPF PresidentialPardonForm
-
-void presidentialPardon(std::string target) {
+void doPresidentialPardon(std::string target) {
 	std::cout << target << " has been pardonned by Zafod Beeblebrox" <<
 	std::endl;
 }
 
-PPF::PresidentialPardonForm(std::string target) :
-Form("pardon", target, 25, 5, presidentialPardon) { }
+PresidentialPardonForm::PresidentialPardonForm(std::string target)
+:	Form("pardon", target, 25, 5, doPresidentialPardon)
+{ }
 
-void PPF::_() { }
+void PresidentialPardonForm::m__abstract__(void) const { }

@@ -3,25 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crochu <crochu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 16:37:04 by crochu            #+#    #+#             */
-/*   Updated: 2021/11/03 00:26:58 by crochu           ###   ########.fr       */
+/*   Updated: 2022/01/25 23:28:49 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SHRUBBERYCREATIONFORM_HPP
-# define SHRUBBERYCREATIONFORM_HPP
+#pragma once
 
-# include "Bureaucrat.hpp"
-# include "Form.hpp"
+#include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 class ShrubberyCreationForm : public Form {
 	public:
+		ShrubberyCreationForm(std::string target = "dummy");
 
-	ShrubberyCreationForm(std::string target = "dummy");
 
-	void	__abstract__();
+	private:
+		void	m__abstract__(void) const;
 };
-
-#endif

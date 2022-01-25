@@ -6,7 +6,7 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:25:28 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2021/10/27 15:54:33 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/25 19:09:36 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,9 @@
 #include <iostream>
 
 int	main(void) {
-	std::cout << "Creating an unnamed bureaucrat with grade 150" << std::endl;
-	std::cout << "Creating bureaucrat jack with grade 150" << std::endl;
-	std::cout << "Creating bureaucrat joe with grade 1" << std::endl;
 	Bureaucrat	a, b("jack"), c("joe", 1);
 
+	std::cout << a << '\n' << b << '\n' << c << '\n' << std::endl;
 	try {
 		std::cout << "Creating bureaucrat dummy with grade 151" << std::endl;
 		Bureaucrat	d("dummy", 151); // GradeTooLowException

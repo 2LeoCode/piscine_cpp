@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Intern.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crochu <crochu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 00:28:15 by crochu            #+#    #+#             */
-/*   Updated: 2021/11/03 01:14:18 by crochu           ###   ########.fr       */
+/*   Updated: 2022/01/26 00:03:13 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@
 #include "PresidentialPardonForm.hpp"
 
 #include <iostream>
-
-#define I Intern
 
 static Form *newShrubberyCreationForm(std::string target) {
 	return new ShrubberyCreationForm(target);
@@ -44,12 +42,27 @@ static Form *(*const formAllocator[3])(std::string) = {
 	newPresidentialPardonForm
 };
 
-Form *I::makeForm(std::string type, std::string target) {
+Intern::Intern() { }
+
+Intern::Intern(const Intern &other) { static_cast< void >(other); }
+
+Intern::~Intern() { }
+
+Intern	&Intern::operator =(const Intern &other) {
+	static_cast< void >(other);
+	return *this;
+}
+
+Form *Intern::makeForm(std::string type, std::string target) {
 	for (unsigned i = 0; i < 3; ++i)
-		if (!type.compare(formType[i])) {
+		if (type == formType[i]) {
 			std::cout << "Intern creates " << type << std::endl;
-			return (formAllocator[i](target));
+			return formAllocator[i](target);
 		}
-	std::cout << "Form " << type << " does not exist" << std::endl;
+	throw EDoesNotExist();
 	return (NULL);
+}
+
+const char	*Intern::EDoesNotExist::what(void) const throw () {
+	return "Form does not exist";
 }

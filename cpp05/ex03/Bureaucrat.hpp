@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crochu <crochu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:25:48 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2021/11/03 00:58:53 by crochu           ###   ########.fr       */
+/*   Updated: 2022/01/25 22:59:09 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUREAUCRAT_HPP
-# define BUREAUCRAT_HPP
+#pragma once
 
 # include "Form.hpp"
 # include <string>
@@ -20,36 +19,36 @@ class Form;
 
 class Bureaucrat {
 	public:
+		Bureaucrat();
+		~Bureaucrat();
 
-	Bureaucrat(std::string name = "unnamed", int grade = 150);
-	~Bureaucrat();
+		Bureaucrat(const Bureaucrat&);
 
-	Bureaucrat(const Bureaucrat &other);
+		Bureaucrat(std::string);
+		Bureaucrat(std::string, int);
 
+		Bureaucrat	&operator =(const Bureaucrat&);
 
-	const std::string	&getName(void) const;
-	int					getGrade(void) const;
+		const std::string	&getName(void) const;
+		int					getGrade(void) const;
 
-	void				upgrade(void);
-	void				downgrade(void);
-	void				signForm(Form &f) const;
-	void				executeForm(Form &f) const;
+		void				upgrade(void);
+		void				downgrade(void);
+		void				signForm(Form&) const;
+		void				executeForm(const Form&) const;
 
-	struct GradeTooHighException : public std::exception {
-		virtual const char	*what() const throw();
-	};
+		struct EGradeTooHigh : public std::exception {
+			virtual const char	*what() const throw();
+		};
 
-	struct GradeTooLowException : public std::exception {
-		virtual const char	*what() const throw();
-	};
+		struct EGradeTooLow : public std::exception {
+			virtual const char	*what() const throw();
+		};
 
 
 	private:
-
-	const std::string	_name;
-	int					_grade;
+		const std::string	m_name;
+		int					m_grade;
 };
 
-std::ostream	&operator<<(std::ostream &out, Bureaucrat &b);
-
-#endif //BUREAUCRAT_HPP
+std::ostream	&operator <<(std::ostream&, const Bureaucrat&);

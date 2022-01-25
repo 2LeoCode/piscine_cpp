@@ -6,11 +6,11 @@
 #    By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/15 01:17:37 by Leo Suardi        #+#    #+#              #
-#    Updated: 2022/01/25 17:12:58 by Leo Suardi       ###   ########.fr        #
+#    Updated: 2022/01/26 00:08:02 by Leo Suardi       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME=bureaucrat
+NAME=intern
 
 INC=$(wildcard *.hpp)
 SRC=$(wildcard *.cpp)
