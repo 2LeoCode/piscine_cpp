@@ -6,7 +6,7 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 15:02:21 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2022/01/23 13:46:19 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/24 17:19:44 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,17 @@ class UniquePtr {
 		:	m_ptr(const_cast< UniquePtr& >(other).m_ptr) { }
 		UniquePtr(T *ptr) : m_ptr(ptr) { }
 
-		UniquePtr	&operator=(const UniquePtr &other) {
+		UniquePtr	&operator =(const UniquePtr &other) {
 			m_ptr = const_cast< UniquePtr& >(other).m_ptr;
 			return *this;
 		}
-		UniquePtr	&operator=(T *ptr) {
+		UniquePtr	&operator =(T *ptr) {
 			m_ptr = ptr;
 			return *this;
 		}
 
-		T			&operator*(void) { return *m_ptr; }
-		T			*operator->(void) { return m_ptr; }
+		T			&operator *(void) { return *m_ptr; }
+		T			*operator ->(void) { return m_ptr; }
 
 	private:
 		T	*m_ptr;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   MateriaSource.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsuardi <lsuardi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/23 15:37:21 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2022/01/23 23:10:45 by lsuardi          ###   ########.fr       */
+/*   Updated: 2022/01/25 15:03:50 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,7 @@
 #include <cstddef>
 
 #include "IMateriaSource.hpp"
-
-#ifndef INV_LMIT
-# define INV_LIMIT 4
-#endif
+#include "List.hpp"
 
 class MateriaSource : public IMateriaSource {
 	public:
@@ -32,10 +29,12 @@ class MateriaSource : public IMateriaSource {
 		void		unlearnMateria(int);
 		AMateria	*createMateria(const std::string&);
 
-		struct EInventoryFull {
+		struct EInventoryFull : public std::exception {
 			const char	*what(void) const throw ();
 		};
+
 	private:
-		AMateria	*m_inventory[INV_LIMIT];
-		bool		m_occupied[INV_LIMIT];
+		AMateria			*m_inventory[4];
+		bool				m_occupied[4];
+		List< AMateria* >	m_addr;
 };

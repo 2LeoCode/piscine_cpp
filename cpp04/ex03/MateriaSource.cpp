@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   MateriaSource.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsuardi <lsuardi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/23 17:52:55 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2022/01/23 23:23:51 by lsuardi          ###   ########.fr       */
+/*   Updated: 2022/01/25 16:43:59 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ static bool	initMaterias(void) {
 
 	if (dataFile.bad())
 		throw std::runtime_error("can't open Materias.txt");
+	g_materiaTrie.insert("cure", new Cure);
+	g_materiaTrie.insert("ice", new Ice);
 	while (dataFile >> tmp)
 		g_materiaTrie.insert(tmp.getType().c_str(), new Materia(tmp));
 	return true;
@@ -35,33 +37,39 @@ static bool	initMaterias(void) {
 MateriaSource::MateriaSource() {
 	static bool	init = initMaterias();
 
-	ft::fill(m_occupied, m_occupied + INV_LIMIT, false);
 	static_cast< void >(init);
+	ft::fill(m_occupied, m_occupied + 4, false);
 }
 
 MateriaSource::MateriaSource(const MateriaSource &other) {
-	for (std::size_t i = 0; i < INV_LIMIT; ++i)
+	for (std::size_t i = 0; i < 4; ++i)
 		if (other.m_occupied[i]) {
 			m_inventory[i] = other.m_inventory[i]->clone();
 			m_occupied[i] = true;
 		}
 }
 
-MateriaSource::~MateriaSource() { }
+MateriaSource::~MateriaSource() {
+	for (
+		List< AMateria* >::node *ptr = m_addr.head();
+		ptr;
+		ptr = ptr->next
+	) delete ptr->data;
+}
 
 MateriaSource	&MateriaSource::operator =(const MateriaSource &other) {
-	for (std::size_t i = 0; i < INV_LIMIT; ++i)
+	for (std::size_t i = 0; i < 4; ++i)
 		if (other.m_occupied[i]) {
-			m_inventory[i] = other.m_inventory[i]->clone();
+			m_addr.push_back(m_inventory[i] = other.m_inventory[i]->clone());
 			m_occupied[i] = true;
 		}
 	return *this;
 }
 
 void	MateriaSource::learnMateria(AMateria *mat) {
-	for (int i = 0; i < INV_LIMIT; ++i)
+	for (int i = 0; i < 4; ++i)
 		if (!m_occupied[i]) {
-			m_inventory[i] = mat;
+			m_addr.push_back(m_inventory[i] = mat->clone());
 			m_occupied[i] = true;
 			return ;
 		}
@@ -69,19 +77,13 @@ void	MateriaSource::learnMateria(AMateria *mat) {
 }
 
 void	MateriaSource::unlearnMateria(int slot) {
-	if (slot >= INV_LIMIT)
+	if (slot >= 4)
 		throw std::out_of_range("MateriaSource::unlearnMateria");
 	m_occupied[slot] = false;
 }
 
 AMateria	*MateriaSource::createMateria(const std::string &type) {
-	const AMateria	*found = g_materiaTrie.search(type.c_str());
-
-	if (found)
-		return new Materia(*dynamic_cast< const Materia* >(found));
-	if (type == "cure") return new Cure;
-	else if (type == "ice") return new Ice;
-	return new Materia;
+	return g_materiaTrie.search(type.c_str())->clone();
 }
 
 const char	*MateriaSource::EInventoryFull::what(void) const throw () {

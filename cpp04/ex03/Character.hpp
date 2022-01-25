@@ -3,16 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   Character.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsuardi <lsuardi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 16:30:37 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2022/01/23 23:35:02 by lsuardi          ###   ########.fr       */
+/*   Updated: 2022/01/25 14:40:53 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
+#include <exception>
+
 #include "ICharacter.hpp"
+#include "List.hpp"
 
 class Character : public ICharacter {
 	public:
@@ -30,12 +33,13 @@ class Character : public ICharacter {
 		virtual void				use(int idx, ICharacter &target);
 		void						deleteInventory(void);
 
-		struct EInventoryFull {
+		struct EInventoryFull : public std::exception {
 			const char	*what(void) const throw ();
 		};
 
 	private:
-		std::string	m_name;
-		AMateria	*m_inventory[4];
-		bool		m_occupied[4];
+		std::string			m_name;
+		AMateria			*m_inventory[4];
+		bool				m_occupied[4];
+		List< AMateria* >	m_addr;
 };

@@ -6,7 +6,7 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 17:38:01 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2022/01/23 13:42:20 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/25 16:48:59 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include "Cat.hpp"
 #include "Dog.hpp"
 #include "UniquePtr.hpp"
-#include "UniqueArrPtr.hpp"
 
 #include <iostream>
 #include <sstream>
@@ -41,27 +40,26 @@ int	main(void) {
 #else
 
 int	main(int argc, char **argv) {
+	unsigned	size;
+
 	if (argc != 2 || std::string(argv[1]).find_first_not_of("0123456789")
 	!= std::string::npos) {
 		std::cout << "Usage: " << argv[0] << " <arraySize>" << std::endl;
 		return 1;
 	}
-	unsigned	size;
 	std::istringstream(argv[1]) >> size;
-	UniqueArrPtr< UniquePtr< Animal > >	animalArr;
-
+	UniquePtr< Animal >	animals[size];
 	try {
-		animalArr = new UniquePtr< Animal >[size];
 		for (unsigned i = 0; i < size / 2; ++i)
-			animalArr[i] = new Cat();
+			animals[i] = new Cat();
 		for (unsigned i = size / 2; i < size; ++i)
-			animalArr[i] = new Dog();
+			animals[i] = new Dog();
 	} catch (std::exception &e) {
 		std::cerr << e.what() << std::endl;
 		return -1;
 	}
 	for (unsigned i = 0; i < size; ++i)
-		animalArr[i]->makeSound();
+		animals[i]->makeSound();
 	return 0;
 }
 
