@@ -6,7 +6,7 @@
 #    By: lsuardi <lsuardi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/15 01:17:37 by Leo Suardi        #+#    #+#              #
-#    Updated: 2022/01/23 23:23:44 by lsuardi          ###   ########.fr        #
+#    Updated: 2022/01/25 17:05:18 by lsuardi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $^ -o $@
 
-%.o: %.cpp $(INC)
+%.o: %.cpp $(INC) Makefile
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
