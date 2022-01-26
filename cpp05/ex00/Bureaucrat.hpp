@@ -6,7 +6,7 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:25:48 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2022/01/25 22:28:36 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/26 10:15:15 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ class Bureaucrat {
 		void				upgrade(void);
 		void				downgrade(void);
 
-		struct EGradeTooHigh : public std::exception {
+		struct GradeTooHighException : public std::exception {
 			virtual const char	*what() const throw();
 		};
 
-		struct EGradeTooLow : public std::exception {
+		struct GradeTooLowException : public std::exception {
 			virtual const char	*what() const throw();
 		};
 

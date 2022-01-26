@@ -6,24 +6,23 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 15:21:34 by crochu            #+#    #+#             */
-/*   Updated: 2022/01/25 23:20:21 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/26 11:19:22 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FORM_HPP
-# define FORM_HPP
+#pragma once
 
-# include "Bureaucrat.hpp"
-# include <string>
+#include <string>
+#include "Bureaucracy.hpp"
 
 class Bureaucrat;
 
-class Form {
+class Form : public Bureaucracy {
 	public:
 		Form();
 		Form(std::string, std::string, int, int, void (*)(std::string));
 		Form(const Form &other);
-		virtual ~Form();
+		virtual ~Form() = 0;
 
 		Form	&operator =(const Form&);
 
@@ -35,17 +34,6 @@ class Form {
 		Form		&beSigned(const Bureaucrat&);
 		const Form	&execute(const Bureaucrat&) const;
 
-		struct ENotSigned : public std::exception {
-			virtual const char	*what() const throw();
-		};
-		struct EAlreadySigned : public std::exception {
-			virtual const char	*what() const throw ();
-		};
-
-
-	protected:
-		virtual void		m__abstract__(void) const = 0;
-
 
 	private:
 		const std::string	m_name, m_target;
@@ -55,5 +43,3 @@ class Form {
 };
 
 std::ostream	&operator<<(std::ostream &out, Form &f);
-
-#endif

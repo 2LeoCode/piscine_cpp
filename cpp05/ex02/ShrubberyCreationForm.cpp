@@ -6,7 +6,7 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 16:55:40 by crochu            #+#    #+#             */
-/*   Updated: 2022/01/25 23:29:12 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/26 12:52:28 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 #include <fstream>
 #include <string>
-
-#define ShrubberyCreationForm ShrubberyCreationForm
 
 void createShrubbery(std::string target) {
 	std::ofstream	out((target + "_shrubbery").c_str(), std::ios::out | std::ios::trunc);
@@ -42,6 +40,5 @@ void createShrubbery(std::string target) {
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target)
-:	Form("shrubbery creation", target, 145, 137, createShrubbery) { }
-
-void ShrubberyCreationForm::m__abstract__(void) const { }
+:	Form("shrubbery creation", target, 145, 137, createShrubbery)
+{ }

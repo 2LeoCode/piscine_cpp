@@ -6,7 +6,7 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 17:16:54 by crochu            #+#    #+#             */
-/*   Updated: 2022/01/25 23:28:57 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/26 11:36:39 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,6 @@
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
 
-class RobotomyRequestForm : public Form {
-	public:
-		RobotomyRequestForm(std::string target = "dummy");
-
-
-	private:
-		void	m__abstract__(void) const;
+struct RobotomyRequestForm : public Form {
+	RobotomyRequestForm(std::string target = "dummy");
 };

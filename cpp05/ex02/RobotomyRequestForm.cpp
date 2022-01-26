@@ -6,7 +6,7 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 22:45:50 by crochu            #+#    #+#             */
-/*   Updated: 2022/01/25 23:29:15 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/26 11:38:51 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void requestRobotomy(std::string target) {
 		std::cout << "Failed to robotomize " << target << std::endl;
 }
 
-RobotomyRequestForm::RobotomyRequestForm(std::string target) :
-Form("robotomy request", target, 72, 45, requestRobotomy) { }
-
-void RobotomyRequestForm::m__abstract__(void) const { }
+RobotomyRequestForm::RobotomyRequestForm(std::string target)
+:	Form("robotomy request", target, 72, 45, requestRobotomy)
+{ }

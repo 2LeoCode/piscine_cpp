@@ -6,7 +6,7 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 23:00:02 by crochu            #+#    #+#             */
-/*   Updated: 2022/01/25 23:29:22 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/26 12:59:29 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ void doPresidentialPardon(std::string target) {
 }
 
 PresidentialPardonForm::PresidentialPardonForm(std::string target)
-:	Form("pardon", target, 25, 5, doPresidentialPardon)
+:	ConcreteForm("pardon", target, 25, 5, doPresidentialPardon)
 { }
 
-void PresidentialPardonForm::m__abstract__(void) const { }
+
+Form	*PresidentialPardonForm::create_instance(std::string target) const {
+	return new PresidentialPardonForm(target);
+}

@@ -6,7 +6,7 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:25:48 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2022/01/25 23:31:47 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/26 11:12:00 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 #include <string>
 
-#include "Form.hpp"
+#include "Bureaucracy.hpp"
 
 class Form;
 
-class Bureaucrat {
+class Bureaucrat : public Bureaucracy {
 	public:
 		Bureaucrat();
 		~Bureaucrat();
@@ -36,14 +36,6 @@ class Bureaucrat {
 		void				upgrade(void);
 		void				downgrade(void);
 		void				signForm(Form&) const;
-
-		struct EGradeTooHigh : public std::exception {
-			virtual const char	*what() const throw();
-		};
-
-		struct EGradeTooLow : public std::exception {
-			virtual const char	*what() const throw();
-		};
 
 
 	private:

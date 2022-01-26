@@ -6,11 +6,12 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 15:21:31 by crochu            #+#    #+#             */
-/*   Updated: 2022/01/25 23:45:28 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/26 11:06:21 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
+#include "Bureaucrat.hpp"
 
 #include <iostream>
 
@@ -38,9 +39,9 @@ Form::Form(std::string name, int gradeToSign)
 	m_gradeToSign(gradeToSign),
 	m_signed(false) {
 	if (m_gradeToSign < 1)
-		throw (Bureaucrat::EGradeTooHigh());
+		throw GradeTooHighException();
 	else if (m_gradeToSign > 150)
-		throw (Bureaucrat::EGradeTooLow());
+		throw GradeTooLowException();
 }
 
 Form	&Form::operator =(const Form &other) {
@@ -58,14 +59,10 @@ Form &Form::beSigned(const Bureaucrat &b) {
 	if (m_signed)
 		throw EAlreadySigned();
 	if (b.getGrade() > m_gradeToSign)
-		throw Bureaucrat::EGradeTooLow();
+		throw GradeTooLowException();
 	std::cout << b.getName() << " signed " << m_name << std::endl;
 	m_signed = true;
 	return *this;
-}
-
-const char *Form::EAlreadySigned::what() const throw () {
-	return "Form already signed";
 }
 
 std::ostream &operator<<(std::ostream &out, Form &f) {

@@ -6,18 +6,18 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 15:21:34 by crochu            #+#    #+#             */
-/*   Updated: 2022/01/25 23:45:09 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/26 11:06:49 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "Bureaucrat.hpp"
 #include <string>
+#include "Bureaucracy.hpp"
 
 class Bureaucrat;
 
-class Form {
+class Form : public Bureaucracy {
 	public:
 		Form();
 		~Form();
@@ -34,10 +34,6 @@ class Form {
 		bool				isSigned(void) const;
 
 		Form	&beSigned(const Bureaucrat&);
-
-		struct EAlreadySigned : public std::exception {
-			virtual const char	*what() const throw ();
-		};
 
 
 	private:

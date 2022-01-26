@@ -6,18 +6,18 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:25:48 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2022/01/25 22:59:09 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/26 11:19:15 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-# include "Form.hpp"
-# include <string>
+#include "Bureaucracy.hpp"
+#include <string>
 
 class Form;
 
-class Bureaucrat {
+class Bureaucrat : public Bureaucracy {
 	public:
 		Bureaucrat();
 		~Bureaucrat();
@@ -37,11 +37,11 @@ class Bureaucrat {
 		void				signForm(Form&) const;
 		void				executeForm(const Form&) const;
 
-		struct EGradeTooHigh : public std::exception {
+		struct GradeTooHighException : public std::exception {
 			virtual const char	*what() const throw();
 		};
 
-		struct EGradeTooLow : public std::exception {
+		struct GradeTooLowException : public std::exception {
 			virtual const char	*what() const throw();
 		};
 

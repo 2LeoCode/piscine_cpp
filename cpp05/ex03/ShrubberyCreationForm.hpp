@@ -6,20 +6,16 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 16:37:04 by crochu            #+#    #+#             */
-/*   Updated: 2022/01/25 23:28:49 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/26 12:59:05 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "ConcreteForm.hpp"
 
-class ShrubberyCreationForm : public Form {
-	public:
-		ShrubberyCreationForm(std::string target = "dummy");
-
-
-	private:
-		void	m__abstract__(void) const;
+struct ShrubberyCreationForm : public ConcreteForm {
+	ShrubberyCreationForm(std::string target = "dummy");
+	Form	*create_instance(std::string) const;
 };

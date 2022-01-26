@@ -6,11 +6,12 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 15:21:31 by crochu            #+#    #+#             */
-/*   Updated: 2022/01/25 23:43:40 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/26 11:29:04 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
+#include "Bureaucrat.hpp"
 
 #include <iostream>
 
@@ -32,9 +33,9 @@ Form::Form(
 	m_gradeToExec(gradeToExec),
 	m_action(action) {
 	if (m_gradeToSign < 1 || m_gradeToExec < 1)
-		throw Bureaucrat::EGradeTooHigh();
+		throw GradeTooHighException();
 	if (m_gradeToSign > 150 || m_gradeToExec > 150)
-		throw Bureaucrat::EGradeTooLow();
+		throw GradeTooLowException();
 }
 
 Form::Form(const Form &other)
@@ -64,7 +65,7 @@ Form &Form::beSigned(const Bureaucrat &b) {
 	if (m_signed)
 		throw EAlreadySigned();
 	if (b.getGrade() > m_gradeToSign)
-		throw Bureaucrat::EGradeTooLow();
+		throw GradeTooLowException();
 	std::cout << b.getName() << " signs " << m_name << std::endl;
 	m_signed = true;
 	return *this;
@@ -74,21 +75,13 @@ const Form &Form::execute(const Bureaucrat &b) const {
 	if (!m_signed)
 		throw ENotSigned();
 	if (b.getGrade() > m_gradeToExec)
-		throw Bureaucrat::EGradeTooLow();
+		throw GradeTooLowException();
 	std::cout << b.getName() << " executes " << m_name << std::endl;
 	if (m_action)
 		m_action(m_target);
 	else
 		std::cout << "But nothing happens..." << std::endl;
 	return *this;
-}
-
-const char *Form::ENotSigned::what() const throw () {
-	return "Form not signed";
-}
-
-const char *Form::EAlreadySigned::what() const throw () {
-	return "Form already signed";
 }
 
 std::ostream &operator<<(std::ostream &out, Form &f) {

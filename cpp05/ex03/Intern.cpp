@@ -6,7 +6,7 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 00:28:15 by crochu            #+#    #+#             */
-/*   Updated: 2022/01/26 00:03:13 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/26 13:00:29 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,10 @@
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
+#include "UniquePtr.hpp"
 
 #include <iostream>
-
-static Form *newShrubberyCreationForm(std::string target) {
-	return new ShrubberyCreationForm(target);
-}
-
-static Form *newRobotomyRequestForm(std::string target) {
-	return new RobotomyRequestForm(target);
-}
-
-static Form *newPresidentialPardonForm(std::string target) {
-	return new PresidentialPardonForm(target);
-}
+#include <typeinfo>
 
 static const std::string formType[3] = {
 	"shrubbery creation",
@@ -36,10 +26,10 @@ static const std::string formType[3] = {
 	"presidential pardon"
 };
 
-static Form *(*const formAllocator[3])(std::string) = {
-	newShrubberyCreationForm,
-	newRobotomyRequestForm,
-	newPresidentialPardonForm
+static ConcreteForm	concreteForms[3] = {
+	ShrubberyCreationForm(),
+	RobotomyRequestForm(),
+	PresidentialPardonForm()
 };
 
 Intern::Intern() { }
@@ -56,8 +46,8 @@ Intern	&Intern::operator =(const Intern &other) {
 Form *Intern::makeForm(std::string type, std::string target) {
 	for (unsigned i = 0; i < 3; ++i)
 		if (type == formType[i]) {
-			std::cout << "Intern creates " << type << std::endl;
-			return formAllocator[i](target);
+			std::cout << "Intern creates a " << type << " form" << std::endl;
+			return concreteForms[i].create_instance(target);
 		}
 	throw EDoesNotExist();
 	return (NULL);

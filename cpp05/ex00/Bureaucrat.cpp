@@ -6,7 +6,7 @@
 /*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:25:54 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2022/01/25 22:28:51 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/01/26 10:15:38 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ Bureaucrat::Bureaucrat(std::string name, int grade)
 :	m_name(name) {
 	if (grade < 1) {
 		m_grade = 1;
-		throw Bureaucrat::EGradeTooHigh();
+		throw Bureaucrat::GradeTooHighException();
 	}
 	else if (grade > 150) {
 		m_grade = 150;
-		throw Bureaucrat::EGradeTooLow();
+		throw Bureaucrat::GradeTooLowException();
 	}
 	else m_grade = grade;
 }
@@ -53,20 +53,20 @@ const std::string	&Bureaucrat::getName(void) const { return m_name; }
 int	Bureaucrat::getGrade(void) const { return m_grade; }
 
 void	Bureaucrat::upgrade(void) {
-	if (m_grade - 1 < 1) throw Bureaucrat::EGradeTooHigh();
+	if (m_grade - 1 < 1) throw Bureaucrat::GradeTooHighException();
 	--m_grade;
 }
 
 void	Bureaucrat::downgrade(void) {
-	if (m_grade + 1 > 150) throw Bureaucrat::EGradeTooLow();
+	if (m_grade + 1 > 150) throw Bureaucrat::GradeTooLowException();
 	++m_grade;
 }
 
-const char	*Bureaucrat::EGradeTooHigh::what(void) const throw () {
+const char	*Bureaucrat::GradeTooHighException::what(void) const throw () {
 	return "Grade too high";
 }
 
-const char	*Bureaucrat::EGradeTooLow::what(void) const throw () {
+const char	*Bureaucrat::GradeTooLowException::what(void) const throw () {
 	return "Grade too low";
 }
 
