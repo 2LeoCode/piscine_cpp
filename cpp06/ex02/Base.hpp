@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   Base.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crochu <crochu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lsuardi <lsuardi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 16:45:27 by crochu            #+#    #+#             */
-/*   Updated: 2021/11/06 16:46:15 by crochu           ###   ########.fr       */
+/*   Updated: 2022/01/26 16:15:07 by lsuardi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-class Base {
-	public:
-		virtual ~Base();
+struct Base {
+	virtual ~Base();
 };

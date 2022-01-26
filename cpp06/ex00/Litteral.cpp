@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Litteral.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crochu <crochu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lsuardi <lsuardi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 18:54:51 by crochu            #+#    #+#             */
-/*   Updated: 2021/11/07 15:15:03 by crochu           ###   ########.fr       */
+/*   Updated: 2022/01/26 16:12:33 by lsuardi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,7 @@
 #include <cstring>
 #include <cmath>
 
-#define SC static_cast
-
-#define L Litteral
-#define Constructor L
-#define Destructor ~L
-
-namespace litteral {
+namespace ft {
 	typedef std::string::const_iterator	const_iterator;
 
 
@@ -80,108 +74,112 @@ namespace litteral {
 	}
 }
 
-L::Constructor(std::string s) {
+Litteral::Litteral(std::string s) {
 	errno = 0;
-	if (litteral::isValidInt(s)) {
+	if (ft::isValidInt(s)) {
 		long tmp = strtol(s.c_str(), NULL, 0);
 		if (errno == ERANGE || tmp < INT_MIN || tmp > INT_MAX)
 			throw ETooLargeNumber();
 		_data.i = tmp;
 		_type = Int;
-	} else if (litteral::isValidFloat(s)) {
+	} else if (ft::isValidFloat(s)) {
 		_data.f = strtof(s.c_str(), NULL);
 		if (errno == ERANGE) {
+			if (*s.rbegin() == 'f' || *s.rbegin() == 'F')
+				throw ETooLargeNumber();
 			errno = 0;
 			_data.d = strtod(s.c_str(), NULL);
 			if (errno == ERANGE) throw ETooLargeNumber();
 			_type = Double;
 		} else _type = Float;
-	} else if (litteral::isValidChar(s)) {
+	} else if (ft::isValidChar(s)) {
 		_data.c = *s.c_str();
 		_type = Char;
 	} else throw EInvalidLitteral();
 }
 
-L::Constructor(const Litteral &other) : _type(other._type), _data(other._data) { }
+Litteral::Litteral(const Litteral &other) : _type(other._type), _data(other._data) { }
 
-L::Destructor() { }
+Litteral::~Litteral() { }
 
 
-Litteral &L::operator=(const Litteral &other) {
+Litteral &Litteral::operator=(const Litteral &other) {
 	_type = other._type;
 	_data = other._data;
 	return *this;
 }
 
-Litteral &L::operator=(const std::string s) {
+Litteral &Litteral::operator=(const std::string s) {
 	bzero(&_data, sizeof(_data));
 	errno = 0;
-	if (litteral::isValidInt(s)) {
+	if (ft::isValidInt(s)) {
 		long tmp = strtol(s.c_str(), NULL, 0);
 		if (errno == ERANGE || tmp < INT_MIN || tmp > INT_MAX)
 			throw ETooLargeNumber();
 		_data.i = tmp;
 		_type = Int;
-	} else if (litteral::isValidFloat(s)) {
+	} else if (ft::isValidFloat(s)) {
 		_data.f = strtof(s.c_str(), NULL);
 		if (errno == ERANGE) {
+			if (*s.rbegin() == 'f' || *s.rbegin() == 'F')
+				throw ETooLargeNumber();
 			errno = 0;
 			_data.d = strtod(s.c_str(), NULL);
 			if (errno == ERANGE) throw ETooLargeNumber();
 			_type = Double;
 		} else _type = Float;
-	} else if (litteral::isValidChar(s)) {
+	} else if (ft::isValidChar(s)) {
 		_data.c = *s.c_str();
 		_type = Char;
 	} else throw EInvalidLitteral();
 	return *this;
 }
 
-L::Type L::getType(void) const {
+Litteral::Type Litteral::getType(void) const {
 	return _type;
 } 
 
-char L::getChar(void) const {
+char Litteral::getChar(void) const {
 	switch (_type) {
-		case Int: return SC< char >(_data.i);
-		case Float: return SC< char >(_data.f);
-		case Double: return SC< char >(_data.d);
+		case Int: return static_cast< char >(_data.i);
+		case Float: return static_cast< char >(_data.f);
+		case Double: return static_cast< char >(_data.d);
 		case Char: break ;
 	}
 	return _data.c;
 }
 
-int L::getInt(void) const {
+int Litteral::getInt(void) const {
 	switch (_type) {
-		case Char: return SC< int >(_data.c);
-		case Float: return SC< int >(_data.f);
-		case Double: return SC< int >(_data.d);
+		case Char: return static_cast< int >(_data.c);
+		case Float: return static_cast< int >(_data.f);
+		case Double: return static_cast< int >(_data.d);
 		case Int: break ;
 	}
 	return _data.i;
 }
 
-float L::getFloat(void) const {
+float Litteral::getFloat(void) const {
 	switch (_type) {
-		case Char: return SC< float >(_data.c);
-		case Int: return SC< float >(_data.i);
-		case Double: return SC< float >(_data.d);
+		case Char: return static_cast< float >(_data.c);
+		case Int: return static_cast< float >(_data.i);
+		case Double: return static_cast< float >(_data.d);
 		case Float: break ;
 	}
 	return _data.f;
 }
 
-double L::getDouble(void) const {
+double Litteral::getDouble(void) const {
 	switch (_type) {
-		case Char: return SC< double >(_data.c);
-		case Int: return SC< double >(_data.i);
-		case Float: return SC< double >(_data.f);
+		case Char: return static_cast< double >(_data.c);
+		case Int: return static_cast< double >(_data.i);
+		case Float: return static_cast< double >(_data.f);
 		case Double: break ;
 	}
 	return _data.d;
 }
 
-void L::print(void) const {
+void Litteral::print(void) const {
 	char	c(getChar());
 	int		i(getInt());
 	float	f(getFloat());
@@ -217,7 +215,8 @@ void L::print(void) const {
 			else std::cout << '\'' << c << '\'';
 			std::cout << std::endl << "int: ";
 			if (isnanf(f) || isinff(f)
-			|| f > SC< float >(INT_MAX) || f < SC< float >(INT_MIN))
+			|| f > static_cast< float >(INT_MAX)
+			|| f < static_cast< float >(INT_MIN))
 				std::cout << "impossible";
 			else std::cout << i;
 			std::cout << std::endl << "float: " << f << 'f' << std::endl <<
@@ -231,8 +230,9 @@ void L::print(void) const {
 				std::cout << "Non displayable";
 			else std::cout << '\'' << c << '\'';
 			std::cout << std::endl << "int: ";
-			if (isnan(d) || isinf(d)
-			|| d > SC< double >(INT_MAX) || d < SC< double >(INT_MIN))
+			if (std::isnan(d) || std::isinf(d)
+			|| d > static_cast< double >(INT_MAX)
+			|| d < static_cast< double >(INT_MIN))
 				std::cout << "impossible";
 			else std::cout << i;
 			std::cout << std::endl << "float: " << f << 'f' << std::endl <<
@@ -240,10 +240,10 @@ void L::print(void) const {
 	}
 }
 
-const char *L::EInvalidLitteral::what(void) const throw () {
+const char *Litteral::EInvalidLitteral::what(void) const throw () {
 	return "Invalid litteral";
 }
 
-const char *L::ETooLargeNumber::what(void) const throw () {
+const char *Litteral::ETooLargeNumber::what(void) const throw () {
 	return "Too large number";
 }

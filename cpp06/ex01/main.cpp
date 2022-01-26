@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crochu <crochu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lsuardi <lsuardi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 16:32:03 by crochu            #+#    #+#             */
-/*   Updated: 2021/11/06 16:39:06 by crochu           ###   ########.fr       */
+/*   Updated: 2022/01/26 16:11:27 by lsuardi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,12 @@
 #include <iostream>
 #include <stdint.h>
 
-#define RC reinterpret_cast
-
 uintptr_t serialize(Data *data) {
-	return RC< uintptr_t >(data);
+	return reinterpret_cast< uintptr_t >(data);
 }
 
 Data *deserialize(uintptr_t addr) {
-	return RC< Data* >(addr);
+	return reinterpret_cast< Data* >(addr);
 }
 
 int main(void) {

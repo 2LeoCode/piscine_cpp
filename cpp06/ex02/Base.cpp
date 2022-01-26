@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   Base.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crochu <crochu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lsuardi <lsuardi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 16:46:24 by crochu            #+#    #+#             */
-/*   Updated: 2021/11/06 16:47:03 by crochu           ###   ########.fr       */
+/*   Updated: 2022/01/26 16:14:55 by lsuardi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Base.hpp"
 
-#define B Base
-#define Destructor ~B
 
-B::Destructor() { }
+Base::~Base() { }
