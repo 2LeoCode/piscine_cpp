@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   span.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crochu <crochu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lsuardi <lsuardi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 02:57:39 by crochu            #+#    #+#             */
-/*   Updated: 2021/11/08 03:17:09 by crochu           ###   ########.fr       */
+/*   Updated: 2022/01/27 14:24:46 by lsuardi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,13 @@
 
 #include <exception>
 
-#define S Span
-#define Constructor S
-#define Destructor ~S
-
 class Span {
 	public:
-		Constructor(unsigned N);
-		Destructor();
+		Span(unsigned N);
+		Span(const Span &other);
+		~Span();
 
+		Span	&operator =(const Span &other);
 		void addNumber(int n);
 
 		unsigned shortestSpan(void) const;
@@ -36,7 +34,7 @@ class Span {
 		};
 
 	private:
-		unsigned	_size;
-		unsigned	_cap;
-		int			*_ptr;
+		unsigned	m_size;
+		unsigned	m_cap;
+		int			*m_data;
 };

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   MutantStack.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crochu <crochu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lsuardi <lsuardi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:51:05 by crochu            #+#    #+#             */
-/*   Updated: 2021/11/09 00:41:59 by crochu           ###   ########.fr       */
+/*   Updated: 2022/01/27 14:37:19 by lsuardi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,25 @@
 #include <stack>
 #include <deque>
 
-#define MS MutantStack
-#define Constructor MS
-#define Destructor ~MS
-
 template <
-	typename T,
+	class T,
 	class Container = std::deque< T >
 > class MutantStack : public std::stack< T, Container > {
 	public:
-		typedef std::stack< T, Container > stack_type;
-		typedef typename Container::iterator iterator;
-		typedef typename Container::const_iterator const_iterator;
-		typedef typename Container::reverse_iterator reverse_iterator;
-		typedef typename Container::const_reverse_iterator
-			const_reverse_iterator;
+		typedef std::stack< T, Container >				stack_type;
+		typedef typename Container::iterator 			iterator;
+		typedef typename Container::const_iterator		const_iterator;
+		typedef typename Container::reverse_iterator	reverse_iterator;
+		typedef
+		typename Container::const_reverse_iterator		const_reverse_iterator;
+
+		MutantStack() : stack_type() { }
+		~MutantStack() { }
+
+		MutantStack		&operator =(const MutantStack &other) {
+			stack_type::c = other.stack_type::c;
+			return *this;
+		}
 
 		iterator begin(void) { return stack_type::c.begin(); }
 		iterator end(void) { return stack_type::c.end(); }

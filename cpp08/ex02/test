@@ -1,9 +1,0 @@
-#!/bin/bash
-
-for file in $(dir build)
-do
-	if [ "$file" != "mutantstack" ]
-	then
-		rm -rf build/$file
-	fi
-done
