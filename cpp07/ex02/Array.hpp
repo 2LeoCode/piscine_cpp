@@ -3,48 +3,48 @@
 /*                                                        :::      ::::::::   */
 /*   Array.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crochu <crochu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lsuardi <lsuardi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 15:41:18 by crochu            #+#    #+#             */
-/*   Updated: 2021/11/08 01:37:02 by crochu           ###   ########.fr       */
+/*   Updated: 2022/01/27 12:06:52 by lsuardi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#define Constructor Array
-#define Destructor ~Array
-
+#include "utils.hpp"
 #include <cstring>
 #include <iostream>
+#include <cstddef>
 
-template <typename T>
-class Array {
+template <
+	class T
+> class Array {
 	public:
-		Constructor(unsigned size = 0) : _size(size), _arr(new T[size]) { }
-		Destructor() { delete[] _arr; }
+		Array(std::size_t size = 0) : m_size(size), m_data(new T[size]) { }
+		~Array() { delete[] m_data; }
 
-		Constructor(const Array< T > &other) :
-		_size(other._size), _arr(new T[_size]) {
-			memcpy(_arr, other._arr, _size * sizeof(T));
+		Array(const Array &other) :
+		m_size(other.m_size), m_data(new T[m_size]) {
+			ft::copy(other.m_data, other.m_data + m_size, m_data);
 		}
 
-		Array< T > &operator=(const Array< T > &other) {
-			_size = other._size;
-			delete[] _arr;
-			_arr = new T[_size];
-			memcpy(_arr, other._arr, _size * sizeof(T));
+		Array	&operator=(const Array &other) {
+			m_size = other.m_size;
+			delete[] m_data;
+			m_data = new T[m_size];
+			ft::copy(other.m_data, other.m_data + m_size, m_data);
 			return *this;
 		}
-		T &operator[](unsigned i) {
-			if (i >= _size) throw EOutOfBounds();
-			return _arr[i];
+		T		&operator[](unsigned i) {
+			if (i >= m_size) throw EOutOfBounds();
+			return m_data[i];
 		}
 
-		unsigned size(void) const { return _size; }
-		void print(void) const {
-			for (unsigned i = 0; i < _size; ++i)
-				std::cout << '[' << _arr[i] << ']';
+		std::size_t	size(void) const { return m_size; }
+		void		print(void) const {
+			for (unsigned i = 0; i < m_size; ++i)
+				std::cout << '[' << m_data[i] << ']';
 			std::cout << std::endl;
 		}
 
@@ -53,6 +53,6 @@ class Array {
 		};
 
 	private:
-		unsigned	_size;
-		T*			_arr;
+		std::size_t	m_size;
+		T*			m_data;
 };

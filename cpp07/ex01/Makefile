@@ -1,17 +1,16 @@
-NAME=litteral
+NAME=iter
 
 CC=clang++
 CFLAGS=-Wall -Werror -Wextra #-g3 -fsanitize=address
-LFLAGS=-lm
 
-INC=Litteral.hpp
-SRC=$(addsuffix .cpp, Litteral main)
+INC=iter.hpp
+SRC=main.cpp
 OBJ=$(SRC:.cpp=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $^ -o $@ $(LFLAGS)
+	$(CC) $(CFLAGS) $^ -o $@
 
 %.o: %.cpp $(INC) Makefile
 	$(CC) $(CFLAGS) -c $< -o $@

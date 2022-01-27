@@ -1,17 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Data.hpp                                           :+:      :+:    :+:   */
+/*   utils.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crochu <crochu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lsuardi <lsuardi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/06 16:28:42 by crochu            #+#    #+#             */
-/*   Updated: 2021/11/06 16:30:20 by crochu           ###   ########.fr       */
+/*   Created: 2022/01/27 12:06:37 by lsuardi           #+#    #+#             */
+/*   Updated: 2022/01/27 12:08:50 by lsuardi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-struct Data {
-	int value;
+namespace ft {
+	template <
+		class InputIt,
+		class OutputIt
+	> OutputIt	copy(InputIt first, InputIt last, OutputIt d_first) {
+		while (first != last)
+			*d_first++ = *first++;
+		return d_first;
+	}
 };

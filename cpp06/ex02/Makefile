@@ -3,8 +3,8 @@ NAME=real_type
 CC=clang++
 CFLAGS=-Wall -Werror -Wextra #-g3 -fsanitize=address
 
-INC=$(wildcard *.hpp)
-SRC=$(wildcard *.cpp)
+INC=$(addsuffix .hpp, Base A B C UniquePtr)
+SRC=$(addsuffix .cpp, Base main)
 OBJ=$(SRC:.cpp=.o)
 
 all: $(NAME)
@@ -12,7 +12,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $^ -o $@
 
-%.o: %.cpp
+%.o: %.cpp $(INC) Makefile
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:

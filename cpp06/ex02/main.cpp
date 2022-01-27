@@ -6,7 +6,7 @@
 /*   By: lsuardi <lsuardi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 16:53:23 by crochu            #+#    #+#             */
-/*   Updated: 2022/01/26 16:22:50 by lsuardi          ###   ########.fr       */
+/*   Updated: 2022/01/27 11:07:21 by lsuardi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int main(void) {
 	} catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}
-	identify(p1.ptr()), identify(p2.ptr()), identify(p3.ptr());
+	identify(&*p1), identify(&*p2), identify(&*p3);
 	std::cout << std::endl;
 	identify(*p1), identify(*p2), identify(*p3);
 	return 0;

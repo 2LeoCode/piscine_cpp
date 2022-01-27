@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crochu <crochu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lsuardi <lsuardi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 15:35:46 by crochu            #+#    #+#             */
-/*   Updated: 2021/11/07 15:38:50 by crochu           ###   ########.fr       */
+/*   Updated: 2022/01/27 11:48:51 by lsuardi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@ void display_string(const char *s) {
 }
 
 int main(int argc, char **argv) {
-	ft::iter(argv + 1, argc - 1, display_string);
+	::iter(argv + 1, argc - 1, display_string);
 	return 0;
 }

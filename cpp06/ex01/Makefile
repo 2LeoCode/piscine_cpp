@@ -3,8 +3,7 @@ NAME=serialize
 CC=clang++
 CFLAGS=-Wall -Werror -Wextra #-g3 -fsanitize=address
 
-INC=$(wildcard *.hpp)
-SRC=$(wildcard *.cpp)
+SRC=main.cpp
 OBJ=$(SRC:.cpp=.o)
 
 all: $(NAME)
@@ -12,7 +11,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $^ -o $@
 
-%.o: %.cpp
+%.o: %.cpp Makefile
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:

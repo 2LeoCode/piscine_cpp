@@ -6,14 +6,14 @@
 /*   By: lsuardi <lsuardi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 16:32:03 by crochu            #+#    #+#             */
-/*   Updated: 2022/01/26 16:11:27 by lsuardi          ###   ########.fr       */
+/*   Updated: 2022/01/27 11:03:17 by lsuardi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Data.hpp"
-
 #include <iostream>
-#include <stdint.h>
+#include <cstdint>
+
+struct Data { int value; };
 
 uintptr_t serialize(Data *data) {
 	return reinterpret_cast< uintptr_t >(data);
