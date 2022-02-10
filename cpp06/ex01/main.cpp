@@ -6,12 +6,12 @@
 /*   By: lsuardi <lsuardi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 16:32:03 by crochu            #+#    #+#             */
-/*   Updated: 2022/01/27 11:03:17 by lsuardi          ###   ########.fr       */
+/*   Updated: 2022/02/10 14:25:38 by lsuardi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include <cstdint>
+#include <stdint.h>
 
 struct Data { int value; };
 
@@ -32,5 +32,7 @@ int main(void) {
 	Data *ptr = deserialize(addr);
 
 	std::cout << ptr->value << std::endl;
+	ptr = deserialize(0);
+	std::cout << ptr << std::endl;
 	return 0;
 }

@@ -6,7 +6,7 @@
 /*   By: lsuardi <lsuardi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 18:46:30 by crochu            #+#    #+#             */
-/*   Updated: 2022/01/26 15:51:58 by lsuardi          ###   ########.fr       */
+/*   Updated: 2022/02/10 14:22:12 by lsuardi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 class Litteral {
 	public:
-		enum Type : short {
+		enum Type {
 			Char,
 			Int,
 			Float,

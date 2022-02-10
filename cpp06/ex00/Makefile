@@ -1,7 +1,7 @@
 NAME=litteral
 
 CC=clang++
-CFLAGS=-Wall -Werror -Wextra #-g3 -fsanitize=address
+CFLAGS=-Wall -Werror -Wextra -std=c++98#-g3 -fsanitize=address
 LFLAGS=-lm
 
 INC=Litteral.hpp
