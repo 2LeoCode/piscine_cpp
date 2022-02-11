@@ -6,7 +6,7 @@
 /*   By: lsuardi <lsuardi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 02:34:01 by crochu            #+#    #+#             */
-/*   Updated: 2022/01/27 14:18:11 by lsuardi          ###   ########.fr       */
+/*   Updated: 2022/02/11 19:34:16 by lsuardi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,14 @@
 #define NOT_FOUND ~0
 
 template <
-	class T
-> size_t easyfind(T intContainer, int value) {
-	for (typename T::iterator it = intContainer.begin();
-	it != intContainer.end(); ++it)
-		if (*it == value) return it - intContainer.begin();
+	class Container
+> size_t easyfind(const Container &cont, int value) {
+	size_t								pos = 0;
+	typename Container::const_iterator	it = cont.begin();
+
+	while (it != cont.end()) {
+		if (*it++ == value) return pos;
+		++pos;
+	}
 	return NOT_FOUND;
 }

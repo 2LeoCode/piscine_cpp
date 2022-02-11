@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crochu <crochu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lsuardi <lsuardi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 02:33:13 by crochu            #+#    #+#             */
-/*   Updated: 2021/11/09 02:22:37 by crochu           ###   ########.fr       */
+/*   Updated: 2022/02/11 20:13:17 by lsuardi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,38 @@
 
 #include <vector>
 #include <iostream>
+#include <typeinfo>
+#include <vector>
+#include <list>
+
+template <
+	class Container
+> void	test_easyfind(const Container &cont, int value) {
+	size_t	pos;
+
+	std::cout << "Container type: " << typeid(Container).name() << '\n';
+	std::cout << "Value: " << value << '\n';
+	if (!~(pos = easyfind(cont, value)))
+		std::cout << "Not found";
+	else std::cout << "Found: " << pos;
+	std::cout << '\n' << std::endl;
+}
 
 int main(void) {
-	std::vector< int > v(10, 5);
-	size_t foundIndex;
+	std::vector< int >	v(10, 5);
+	std::list< int >	l(10, 5);
 
+	v[0] = 1;
 	v[5] = 0;
-	std::cout << "Searching for 5..." << std::endl;
-	if (!~(foundIndex = easyfind(v, 5)))
-		std::cout << "Not found" << std::endl;
-	else std::cout << "Found 5 at pos " << foundIndex << std::endl;
-	std::cout << "Searching for 0..." << std::endl;
-	if (!~(foundIndex = easyfind(v, 0)))
-		std::cout << "Not found" << std::endl;
-	else std::cout << "Found 0 at pos " << foundIndex << std::endl;
-	std::cout << "Searching for 42..." << std::endl;
-	if (!~(foundIndex = easyfind(v, 42)))
-		std::cout << "Not found" << std::endl;
-	else std::cout << "Found 42 at pos " << foundIndex << std::endl;
+	*++(++(++l.begin())) = 42;
+	*l.rbegin() = 0;
+	test_easyfind(v, 0);
+	test_easyfind(v, 1);
+	test_easyfind(v, 10);
+	test_easyfind(v, 42);
+	test_easyfind(l, 0);
+	test_easyfind(l, 1);
+	test_easyfind(l, 10);
+	test_easyfind(l, 42);
 	return 0;
 }
