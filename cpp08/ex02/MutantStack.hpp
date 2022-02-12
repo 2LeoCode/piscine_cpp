@@ -6,7 +6,7 @@
 /*   By: lsuardi <lsuardi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 23:51:05 by crochu            #+#    #+#             */
-/*   Updated: 2022/01/27 14:37:19 by lsuardi          ###   ########.fr       */
+/*   Updated: 2022/02/12 20:38:26 by lsuardi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,15 @@ template <
 			return *this;
 		}
 
-		iterator begin(void) { return stack_type::c.begin(); }
-		iterator end(void) { return stack_type::c.end(); }
-		reverse_iterator rbegin(void) { return stack_type::c.rbegin(); }
-		reverse_iterator rend(void) { return stack_type::c.rend(); }
+		iterator		begin(void) { return stack_type::c.begin(); }
+		const_iterator	begin(void) const { return stack_type::c.begin(); }
+		iterator		end(void) { return stack_type::c.end(); }
+		const_iterator	end(void) const { return stack_type::c.end(); }
+
+		reverse_iterator		rbegin(void) { return stack_type::c.rbegin(); }
+		const_reverse_iterator	rbegin(void) const
+		{ return stack_type::c.rbegin(); }
+		reverse_iterator		rend(void) { return stack_type::c.rend(); }
+		const_reverse_iterator	rend(void) const
+		{ return stack_type::c.rend(); }
 };

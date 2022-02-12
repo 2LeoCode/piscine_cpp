@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Random.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
+/*   By: lsuardi <lsuardi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 15:46:32 by Leo Suardi        #+#    #+#             */
-/*   Updated: 2022/02/12 16:45:50 by Leo Suardi       ###   ########.fr       */
+/*   Updated: 2022/02/12 18:55:01 by lsuardi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ bool	Random::m_init(void) {
 	std::time_t	seed = std::time(NULL);
 	initstate(seed, m_statebuf, STATEBUF_SIZE);
 	setstate(m_statebuf);
-	srandom(seed);
+	//srandom(seed);
 	return true;
 }
 

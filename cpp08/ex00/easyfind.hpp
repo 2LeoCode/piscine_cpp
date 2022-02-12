@@ -6,25 +6,21 @@
 /*   By: lsuardi <lsuardi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 02:34:01 by crochu            #+#    #+#             */
-/*   Updated: 2022/02/11 19:34:16 by lsuardi          ###   ########.fr       */
+/*   Updated: 2022/02/12 20:31:44 by lsuardi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include <cstddef>
-
-#define NOT_FOUND ~0
+#include <stdexcept>
+#include <algorithm>
 
 template <
-	class Container
-> size_t easyfind(const Container &cont, int value) {
-	size_t								pos = 0;
-	typename Container::const_iterator	it = cont.begin();
+	class T
+> int	&easyfind(T &cont, int value) {
+	typename T::iterator	found;
 
-	while (it != cont.end()) {
-		if (*it++ == value) return pos;
-		++pos;
-	}
-	return NOT_FOUND;
+	if ((found = std::find(cont.begin(), cont.end(), value)) == cont.end())
+		throw std::out_of_range("easyfind");
+	return *found;
 }
