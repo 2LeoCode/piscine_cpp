@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   span.cpp                                           :+:      :+:    :+:   */
+/*   Span.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsuardi <lsuardi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Leo Suardi <lsuardi@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 03:00:28 by crochu            #+#    #+#             */
-/*   Updated: 2022/01/27 14:26:16 by lsuardi          ###   ########.fr       */
+/*   Updated: 2022/02/12 16:57:46 by Leo Suardi       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "span.hpp"
+#include "Span.hpp"
 
 #define diff(a, b) ((a) < (b) ? (b) - (a) : (a) - (b))
 
@@ -47,5 +47,14 @@ unsigned Span::longestSpan(void) const {
 	return (longest_span);
 }
 
+const int	*Span::begin(void) const { return m_data; }
+const int	*Span::end(void) const { return m_data + m_size; }
+
 const char *Span::ENoSpan::what() const throw () { return "Not enough numbers"; }
 const char *Span::ESpanFull::what() const throw () { return "Array is full"; }
+
+std::ostream &operator <<(std::ostream &out, const Span &sp) {
+	for (const int *ptr = sp.begin(); ptr != sp.end(); ++ptr)
+		out << '[' << *ptr << ']';
+	return out;
+}
